@@ -21,7 +21,7 @@ namespace WFLostNFurious
 {
     public partial class frmMain : Form
     {
-        const string SERVER_ADDRESS = "http://192.168.123.242";
+        const string SERVER_ADDRESS = "http://127.0.0.1";
         const string GAME_INFO_FILE_PATH = "gameInfos.json";
         //Propriete
         enum Direction { Haut, Bas, Gauche, Droite };
@@ -42,11 +42,13 @@ namespace WFLostNFurious
         {
             InitializeComponent();
             DoubleBuffered = true;
-
+            //on crée le personnage raichu avec la classe Personnage
+            // et on doit rentrer en valeur 
             PersonnageRaichu = new Personnage(new PointF(0, 0), (int)Direction.Haut);
             LstLabyrinthe = new List<Bloc>();
             LstInstruction = new List<string>();
-            SeparerCode();
+            //
+          //  SeparerCode();
             tmrCheckStatus.Enabled = true;
         }
 
@@ -81,20 +83,28 @@ namespace WFLostNFurious
         /// <param name="matriceLabyrinthe">Schema du labyrinthe</param>
         public void CreateLabFromGrid(int[][] matriceLabyrinthe)
         {
+            //pour chaque case du labyrinthe on fait à chaque fois
             for (int i = 0; i < matriceLabyrinthe.Length; i++)
             {
+                //donc la y prend pour valeur le  premier carré on lui multiplie la taille du bloc dans la classe jeu et on lui rajoute la position en y du labyrinthe
                 int y = (i + 1) * Jeu.TAILLE_BLOC_Y + Jeu.POSITION_LABYRINTHE_Y;
+                //donc la pour chaque tableau dans matriceLabyrinthe (grace au [i]) 
                 for (int j = 0; j < matriceLabyrinthe[i].Length; j++)
                 {
+                    // pour chaque carré dans le tableau into tableau on lui multiplie la taille en x du bloc et on lui donne la position du labyrinthe
                     int x = (j + 1) * Jeu.TAILLE_BLOC_X + Jeu.POSITION_LABYRINTHE_X;
-                    if (matriceLabyrinthe[i][j] == Jeu.ID_MUR)  //Si c'est un mur
+                    //DONC si j'ai bien compris si le i et y du bloc = a 1 ca veut donc dire que c'est un mur
+                    if (matriceLabyrinthe[i][j] == Jeu.ID_MUR)  //Si c'est un mur que l'id vaut 1
                     {
+                        //on crée le mur selon la valeur x et y rentré juste avant 
                         CreationMur(x, y);
                     }
+                    //DONC si j'ai bien compris si le i et y du bloc = a 2 ca veut donc dire que c'est une arrivé
                     else if (matriceLabyrinthe[i][j] == Jeu.ID_ARRIVEE) //Si c'est une arrivee
                     {
                         CreationArrivee(x, y);
                     }
+                    //DONC si j'ai bien compris si le i et y du bloc = a 3 ca veut donc dire que c'est le personnage
                     else if (matriceLabyrinthe[i][j] == Jeu.ID_PERSONNAGE)  //Si c'est le personnage
                     {
                         PersonnageRaichu.Position = new PointF(Convert.ToSingle(x), Convert.ToSingle(y));
@@ -473,6 +483,7 @@ namespace WFLostNFurious
 
             try
             {
+                //on essaye de se connecter à la base de donnée avec l'adresse du serveur dans la variable SERVER_ADDRESS qui se trouve tout en haut
                 string jsonReceived = Jeu.RecevoirInfos(SERVER_ADDRESS + "/webdispatcher/soluce.php");
 
                 JSONParser jsonData = new JSONParser(jsonReceived);

@@ -67,6 +67,7 @@ namespace WFLostNFurious
         /// <summary>
         /// Tableau qui contient le schema du labyrithe
         /// </summary>
+        /// la clé est MatriceLabyrinthe et la valeur c'est matriceLabyrinthe
         public static int[][] MatriceLabyrinthe => matriceLabyrinthe;
         /// <summary>
         /// Nombre d'instructions effectuee par le personnage
@@ -81,6 +82,7 @@ namespace WFLostNFurious
             EstEnMouvement = false;
             ArriveeDemandee = new Arrivee();
             Rnd = new Random();
+            //la longeur du labyrinthe donc ce double tableau qui contient des tableaux
             matriceLabyrinthe = new int[][] {
                 new int[] { 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 },
                 new int[] { 4, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 4 },

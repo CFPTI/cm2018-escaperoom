@@ -137,7 +137,7 @@
             this.pnlCommandes.Dock = System.Windows.Forms.DockStyle.Right;
             this.pnlCommandes.Location = new System.Drawing.Point(1497, 0);
             this.pnlCommandes.Name = "pnlCommandes";
-            this.pnlCommandes.Size = new System.Drawing.Size(423, 1080);
+            this.pnlCommandes.Size = new System.Drawing.Size(423, 1070);
             this.pnlCommandes.TabIndex = 9;
             this.pnlCommandes.Visible = false;
             // 
@@ -250,7 +250,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1920, 1080);
+            this.ClientSize = new System.Drawing.Size(1920, 1070);
             this.Controls.Add(this.pnlInstructions);
             this.Controls.Add(this.btnStartGame);
             this.Controls.Add(this.pnlCommandes);
