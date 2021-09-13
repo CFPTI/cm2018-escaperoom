@@ -1,4 +1,9 @@
-﻿using System;
+﻿/*modifieur: David Vieira Luis (il abuse) / Gabriel Bonetti
+ *projet: labyrinte (escape room)
+ * but: modifier le code du labyrinte créer en 2018
+ * date: 13/09/2021 / ???
+ */
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
