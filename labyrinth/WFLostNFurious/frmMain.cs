@@ -163,7 +163,7 @@ namespace WFLostNFurious
         private void Gagner()
         {
             //Appele page php pour fin partie
-            Jeu.RecevoirInfos(SERVER_ADDRESS + "/webdispatcher/step2.php");
+            Jeu.RecevoirInfos(/*SERVER_ADDRESS + "/webdispatcher/step2.php"*/);
             //Fini la partie
             Jeu.EstEnJeu = false;
             //Le perso n'est plus en mouvement
@@ -240,6 +240,8 @@ namespace WFLostNFurious
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        /// 
+        // Quand on appuie sur un bouton(n'importe lequelle) cela va ajouter son texte dans la listbox et si dans la listbox il y a plus que 0 valeur cela active le btnPlay
         private void BtnMouvement_Click(object sender, EventArgs e)
         {
 
@@ -486,7 +488,7 @@ namespace WFLostNFurious
 
             JSONParser JSONGameInfos = new JSONParser(gameInfos);
 
-            try
+           /* try
             {
                 //on essaye de se connecter à la base de donnée avec l'adresse du serveur dans la variable SERVER_ADDRESS qui se trouve tout en haut
                 string jsonReceived = Jeu.RecevoirInfos(SERVER_ADDRESS + "/webdispatcher/soluce.php");
@@ -508,7 +510,7 @@ namespace WFLostNFurious
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-            }
+            }*/
         }
 
         private void WriteGameInfosData(string data)

@@ -149,6 +149,7 @@ namespace WFLostNFurious
                 return Jeu.CODE_DE_BASE;
             }
         } 
+
         #endregion
     }
 }
