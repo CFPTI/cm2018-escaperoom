@@ -64,7 +64,7 @@ namespace WFLostNFurious
         {
             try
             {
-                string jsonReceived = Jeu.RecevoirInfos(SERVER_ADDRESS + "/webdispatcher/soluce.php");
+                string jsonReceived = Jeu.RecevoirInfos(/*SERVER_ADDRESS + "/webdispatcher/soluce.php"*/);
 
                 JSONParser jsonData = new JSONParser(jsonReceived);
 
@@ -163,7 +163,7 @@ namespace WFLostNFurious
         private void Gagner()
         {
             //Appele page php pour fin partie
-            Jeu.RecevoirInfos(SERVER_ADDRESS + "/webdispatcher/step2.php");
+            Jeu.RecevoirInfos(/*SERVER_ADDRESS + "/webdispatcher/step2.php"*/);
             //Fini la partie
             Jeu.EstEnJeu = false;
             //Le perso n'est plus en mouvement
@@ -177,12 +177,33 @@ namespace WFLostNFurious
                 tw.WriteLine("false");
                 tw.Close();
             }
+
+
+
             */
-            //Affiche le code
+            //Affiche le code (Ancien code)
+            /*  Label lblCode = new Label()
+              {
+                  Location = new Point(Jeu.POSITION_CODE_VICTOIRE_X, Jeu.POSITION_CODE_VICTOIRE_Y),
+                  Text = $"Le code est : {CodeAAfficher}",
+                  AutoSize = false,
+                  Size = new Size(this.Width, this.Height),
+                  Font = new Font("Arial", 75),
+                  TextAlign = ContentAlignment.MiddleCenter,
+                  BackColor = Color.Transparent
+              };
+              this.Controls.Add(lblCode);*/
+
+
+
+
+
+
+
             Label lblCode = new Label()
             {
                 Location = new Point(Jeu.POSITION_CODE_VICTOIRE_X, Jeu.POSITION_CODE_VICTOIRE_Y),
-                Text = $"Le code est : {CodeAAfficher}",
+                Text = $"Le code est : {Jeu.RecevoirInfos()}",
                 AutoSize = false,
                 Size = new Size(this.Width, this.Height),
                 Font = new Font("Arial", 75),
@@ -190,6 +211,7 @@ namespace WFLostNFurious
                 BackColor = Color.Transparent
             };
             this.Controls.Add(lblCode);
+
 
         }
 
@@ -240,6 +262,8 @@ namespace WFLostNFurious
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        /// 
+        // Quand on appuie sur un bouton(n'importe lequelle) cela va ajouter son texte dans la listbox et si dans la listbox il y a plus que 0 valeur cela active le btnPlay
         private void BtnMouvement_Click(object sender, EventArgs e)
         {
 
@@ -486,7 +510,7 @@ namespace WFLostNFurious
 
             JSONParser JSONGameInfos = new JSONParser(gameInfos);
 
-            try
+           /* try
             {
                 //on essaye de se connecter à la base de donnée avec l'adresse du serveur dans la variable SERVER_ADDRESS qui se trouve tout en haut
                 string jsonReceived = Jeu.RecevoirInfos(SERVER_ADDRESS + "/webdispatcher/soluce.php");
@@ -508,7 +532,7 @@ namespace WFLostNFurious
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-            }
+            }*/
         }
 
         private void WriteGameInfosData(string data)
