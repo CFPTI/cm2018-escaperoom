@@ -163,7 +163,7 @@ namespace WFLostNFurious
         private void Gagner()
         {
             //Appele page php pour fin partie
-            Jeu.RecevoirInfos(/*SERVER_ADDRESS + "/webdispatcher/step2.php"*/);
+            Jeu.RecevoirInfos(SERVER_ADDRESS + "/webdispatcher/step2.php");
             //Fini la partie
             Jeu.EstEnJeu = false;
             //Le perso n'est plus en mouvement
