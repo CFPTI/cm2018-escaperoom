@@ -64,7 +64,7 @@ namespace WFLostNFurious
         {
             try
             {
-                string jsonReceived = Jeu.RecevoirInfos(SERVER_ADDRESS + "/webdispatcher/soluce.php");
+                string jsonReceived = Jeu.RecevoirInfos(/*SERVER_ADDRESS + "/webdispatcher/soluce.php"*/);
 
                 JSONParser jsonData = new JSONParser(jsonReceived);
 
@@ -163,7 +163,7 @@ namespace WFLostNFurious
         private void Gagner()
         {
             //Appele page php pour fin partie
-            Jeu.RecevoirInfos(SERVER_ADDRESS + "/webdispatcher/step2.php");
+            Jeu.RecevoirInfos(/*SERVER_ADDRESS + "/webdispatcher/step2.php"*/);
             //Fini la partie
             Jeu.EstEnJeu = false;
             //Le perso n'est plus en mouvement
@@ -177,12 +177,33 @@ namespace WFLostNFurious
                 tw.WriteLine("false");
                 tw.Close();
             }
+
+
+
             */
-            //Affiche le code
+            //Affiche le code (Ancien code)
+            /*  Label lblCode = new Label()
+              {
+                  Location = new Point(Jeu.POSITION_CODE_VICTOIRE_X, Jeu.POSITION_CODE_VICTOIRE_Y),
+                  Text = $"Le code est : {CodeAAfficher}",
+                  AutoSize = false,
+                  Size = new Size(this.Width, this.Height),
+                  Font = new Font("Arial", 75),
+                  TextAlign = ContentAlignment.MiddleCenter,
+                  BackColor = Color.Transparent
+              };
+              this.Controls.Add(lblCode);*/
+
+
+
+
+
+
+
             Label lblCode = new Label()
             {
                 Location = new Point(Jeu.POSITION_CODE_VICTOIRE_X, Jeu.POSITION_CODE_VICTOIRE_Y),
-                Text = $"Le code est : {CodeAAfficher}",
+                Text = $"Le code est : {Jeu.RecevoirInfos()}",
                 AutoSize = false,
                 Size = new Size(this.Width, this.Height),
                 Font = new Font("Arial", 75),
@@ -190,6 +211,7 @@ namespace WFLostNFurious
                 BackColor = Color.Transparent
             };
             this.Controls.Add(lblCode);
+
 
         }
 

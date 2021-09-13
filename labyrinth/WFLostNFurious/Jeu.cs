@@ -132,23 +132,50 @@ namespace WFLostNFurious
         /// </summary>
         /// <param name="url">Url du serveur</param>
         /// <returns>Le code si connexion reussie, F sinon</returns>
-        static public string RecevoirInfos(string url)
+        /// 
+
+
+
+
+        //-------------------------------------
+
+
+        //Ancien code mais il manque la base de donnée
+        /*  static public string RecevoirInfos(string url)
+          {
+              string code = "";  //La pour le debuggage
+              try
+              {
+                  using (WebClient client = new WebClient())
+                  {
+                      code = client.DownloadString(new Uri(url));
+                      return code;
+                  }
+              }
+              catch (WebException e)
+              {
+                  Debug.WriteLine(e.ToString());
+                  return Jeu.CODE_DE_BASE;
+              }
+          } */
+
+
+
+
+
+        //---------------------------------------
+
+
+
+        static public string RecevoirInfos()
         {
-            string code = "";  //La pour le debuggage
-            try
-            {
-                using (WebClient client = new WebClient())
-                {
-                    code = client.DownloadString(new Uri(url));
-                    return code;
-                }
-            }
-            catch (WebException e)
-            {
-                Debug.WriteLine(e.ToString());
+           
+            
+                
                 return Jeu.CODE_DE_BASE;
-            }
-        } 
+            
+        }
+
 
         #endregion
     }
