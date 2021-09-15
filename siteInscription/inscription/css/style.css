@@ -1,29 +1,32 @@
 @import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
-body{
+body {
     width: 100%;
     background-color: rgb(192, 192, 192);
     background-image: url("../img/fond.png");
-    
 }
-h1{
+
+h1 {
     margin-top: 5%;
-    text-shadow:0 4px 0 #00ecff, 0 -4px 0 #ff4045;
+    text-shadow: 0 4px 0 #00ecff, 0 -4px 0 #ff4045;
     font-family: 'Russo One', sans-serif;
     text-align: center;
     font-size: 60px;
 }
-header>p{
+
+header>p {
     text-align: center;
     font-size: 40px;
     font-family: 'Russo One', sans-serif;
 }
-select{
+
+select {
     width: 135px;
     height: 30px;
     text-align: center;
     font-size: large;
 }
-main{
+
+main {
     border-radius: 10px;
     background-color: rgb(207, 207, 207);
     height: 400px;
@@ -32,15 +35,21 @@ main{
     padding: 20px;
     box-shadow: 5px 5px 5px rgb(43, 43, 43);
 }
+
+
 /* table{
     display: flexbox;
 } */
-td{
+
+td {
     text-align: center;
     border: 3px solid black;
-
 }
 
-.selected{
+.selected {
     background-color: greenyellow;
+}
+
+.pris {
+    background-color: red;
 }
