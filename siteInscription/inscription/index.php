@@ -2,13 +2,14 @@
 define("HEURE_DEBUT", 9);
 define("HEURE_FIN", 20);
 
-function afficherTableauHeures(){
+function afficherTableauHeures()
+{
     $tableauMinutes = ["00", "20", "40"];
     echo "<table>";
-    for($i=HEURE_DEBUT; $i<=HEURE_FIN; $i++){
+    for ($i = HEURE_DEBUT; $i <= HEURE_FIN; $i++) {
         echo "<tr>";
         foreach ($tableauMinutes as $value) {
-            echo "<td id=\"".$i."h".$value."\" onclick='heureChoisie(\"".$i . "h" . $value . "\", this)'>". $i ."h" . $value ."</td>";
+            echo "<td id=\"" . $i . "h" . $value . "\" onclick='heureChoisie(\"" . $i . "h" . $value . "\", this)'>" . $i . "h" . $value . "</td>";
         }
         echo "</tr>";
     }
@@ -19,6 +20,7 @@ function afficherTableauHeures(){
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -26,10 +28,11 @@ function afficherTableauHeures(){
     <title>Inscription a l'escape game</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
     <header>
         <h1>INSCRIPTION ESCAPE GAME</h1>
-        <p>Jour : 
+        <p>Jour :
             <select name="jour">
                 <option value="">mardi</option>
                 <option value="">mercredi</option>
@@ -40,22 +43,24 @@ function afficherTableauHeures(){
             </select>
         </p>
     </header>
-    <main>       
-            <?php afficherTableauHeures();?>
+    <main>
+        <?php afficherTableauHeures(); ?>
+        <br>
+        <button type="submit" value="submit_" id="submit">Valider</button>
     </main>
     <script>
-    function heureChoisie(heure, sender){
-       let button = document.getElementByClass("td");
-       let ancienneHeureChoisi = button.getAttribute("value").split('_')[1]; //en cas de changement
-        if(ancienneHeureChoisi != "" && ancienneHeureChoisi != null){
-            document.getElementById(ancienneHeureChoisi).setAttribute("class", "");
-            button.setAttribute("value", "submit_");
+        function heureChoisie(heure, sender) {
+            let button = document.getElementById("submit");
+            let ancienneHeureChoisi = button.getAttribute("value").split('_')[1]; //en cas de changement
+            if (ancienneHeureChoisi != "" && ancienneHeureChoisi != null) {
+                document.getElementById(ancienneHeureChoisi).setAttribute("class", "");
+                button.setAttribute("value", "submit_");
+            }
+            sender.setAttribute("class", "selected");
+            let value = "submit_" + heure;
+            button.setAttribute("value", value);
         }
-        sender.setAttribute("class", "selected");
-        let value = "submit_"+heure;
-        button.setAttribute("value", value);
-    }
-
-</script>
+    </script>
 </body>
+
 </html>

@@ -39,3 +39,7 @@ td{
     padding: 10px;
     
 }
+
+.selected{
+    background-color: greenyellow;
+}
