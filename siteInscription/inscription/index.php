@@ -40,10 +40,22 @@ function afficherTableauHeures(){
             </select>
         </p>
     </header>
-    <main>
-        
+    <main>       
             <?php afficherTableauHeures();?>
-            
     </main>
+    <script>
+    function heureChoisie(heure, sender){
+       let button = document.getElementByClass("td");
+       let ancienneHeureChoisi = button.getAttribute("value").split('_')[1]; //en cas de changement
+        if(ancienneHeureChoisi != "" && ancienneHeureChoisi != null){
+            document.getElementById(ancienneHeureChoisi).setAttribute("class", "");
+            button.setAttribute("value", "submit_");
+        }
+        sender.setAttribute("class", "selected");
+        let value = "submit_"+heure;
+        button.setAttribute("value", value);
+    }
+
+</script>
 </body>
 </html>
