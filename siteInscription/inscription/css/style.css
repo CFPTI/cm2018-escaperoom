@@ -32,10 +32,11 @@ main{
     padding: 20px;
     box-shadow: 5px 5px 5px rgb(43, 43, 43);
 }
+/* table{
+    display: flexbox;
+} */
 td{
-
+    text-align: center;
     border: 3px solid black;
-    margin: 20px;
-    padding: 10px;
-    
+
 }
