@@ -1,6 +1,6 @@
 <?php
 define("HEURE_DEBUT", 9);
-define("HEURE_FIN", 20);
+define("HEURE_FIN", 19);
 
 function afficherTableauHeures()
 {
