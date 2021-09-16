@@ -16,7 +16,7 @@ $results = "";
 // }
 echo $results;
 $date = explode("-", $results);
-var_dump($date);
+
 
 if (isset($_POST['submit'])) {
     $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
@@ -83,10 +83,9 @@ function afficherTableauHeures()
         <main>
             <?php afficherTableauHeures(); ?>
             <br>
-
             <button type="submit" name="submit" value="submit_" id="submit">Valider</button>
             <br>
-            <a href="inscrits/inscrit.php">Liste des rdv</a>
+            <a href="inscrits/inscrit.php" class="listeRDV">Liste des rdv</a>
         </main>
     </form>
     <script>

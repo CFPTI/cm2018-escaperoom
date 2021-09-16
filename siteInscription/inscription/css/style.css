@@ -30,12 +30,13 @@ select {
 main {
     border-radius: 10px;
     background-color: rgb(207, 207, 207);
-    height: 400px;
+    height: 100%;
     width: 70%;
     margin: auto;
     padding: 2%;
-
-
+    
+    
+    text-align: center;
     box-shadow: 5px 5px 5px rgb(43, 43, 43);
 }
 
@@ -59,12 +60,6 @@ table{
     border-spacing: 15px;
 }
 
-
-.selected{
-    background-color: rgb(211, 211, 211);
-    color: rgb(0, 0, 0);
-}
-
 button{
     display: inherit;
     width: 90%;
@@ -82,4 +77,35 @@ button:hover{
     background-color: green;
     color: white;
 
+}
+
+.selected{
+    background-color: rgb(211, 211, 211);
+    color: rgb(0, 0, 0);
+}
+.pris{
+    background-image: url('../img/rayures.jpg');
+    background-color: rgb(70, 70, 70);
+    color: grey;
+}
+.listeRDV{
+    text-decoration: none;
+    color: black;
+    font-family: 'Russo One', sans-serif;
+    padding: 1%;
+    border-radius: 50px;
+    background-color: white;
+    box-shadow: 1px 1px 1px rgb(180, 180, 180);
+}
+
+.back{
+    background-color: rgb(255, 255, 255);
+    font-family: 'Russo One', sans-serif;
+    margin-top: 1%;
+    margin: 10px;
+    padding: 1%;
+    border-radius: 50px;
+    box-shadow: 1px 1px 1px rgb(180, 180, 180);
+    text-decoration: none;
+    color: black;
 }
