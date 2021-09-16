@@ -8,8 +8,10 @@ using System.Threading.Tasks;
 
 namespace WFLostNFurious
 {
+    
     static class Jeu
     {
+
         //Propriete
         #region const
         public const int ID_MUR = 1;
@@ -44,6 +46,10 @@ namespace WFLostNFurious
         static Random rnd;
         static readonly int[][] matriceLabyrinthe;  //Matrice du labyrinthe
         static int compteurInstructionsEffectuees;
+
+
+
+        
         #endregion
 
         //Champs
@@ -82,6 +88,7 @@ namespace WFLostNFurious
             EstEnMouvement = false;
             ArriveeDemandee = new Arrivee();
             Rnd = new Random();
+            
             //la longeur du labyrinthe donc ce double tableau qui contient des tableaux
             matriceLabyrinthe = new int[][] {
                 new int[] { 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 },
@@ -164,16 +171,28 @@ namespace WFLostNFurious
 
 
         //---------------------------------------
-
+        static public string RecupDate()
+        {
+            var DateAndTime = DateTime.Now;
+            var Date = DateAndTime.Date.ToString("yyyy-MM-dd");
+            return Date;
+        }
 
 
         static public string RecevoirInfos()
         {
-           
-            
-                
-                return Jeu.CODE_DE_BASE;
-            
+            var Calendrier = new Dictionary<string, string> { { "2021-09-15", "A" }, { "2021-09-16", "D" }, /* etc */ };
+            foreach (var item in Calendrier)
+            {
+                if (RecupDate() == item.Key)
+                {
+                    return item.Value;
+                }
+            }
+            return null;
+
+
+
         }
 
 
