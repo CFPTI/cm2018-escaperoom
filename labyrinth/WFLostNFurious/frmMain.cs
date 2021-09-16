@@ -446,8 +446,7 @@ namespace WFLostNFurious
             //Affiche le labyrinthe
             CreateLabFromGrid(Jeu.MatriceLabyrinthe);
             Jeu.NouvelleArrivee(LstLabyrinthe);
-            
-            
+
         }
        /* public  void RecupDate()
         {
