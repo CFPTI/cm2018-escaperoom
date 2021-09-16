@@ -181,7 +181,8 @@ namespace WFLostNFurious
 
         static public string RecevoirInfos()
         {
-            var Calendrier = new Dictionary<string, string> { { "2021-09-15", "A" }, { "2021-09-16", "D" }, /* etc */ };
+            /*
+            var Calendrier = new Dictionary<string, string> { { "2021-09-15", "A" }, { "2021-09-16", "D" }, / etc / };
             foreach (var item in Calendrier)
             {
                 if (RecupDate() == item.Key)
@@ -190,8 +191,8 @@ namespace WFLostNFurious
                 }
             }
             return null;
-
-
+*/
+            return CODE_DE_BASE;
 
         }
 
