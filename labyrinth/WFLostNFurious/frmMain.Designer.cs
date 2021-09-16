@@ -110,7 +110,6 @@
             // 
             // tmrAvancer
             // 
-            this.tmrAvancer.Interval = 500;
             this.tmrAvancer.Tick += new System.EventHandler(this.TmrAvancer_Tick);
             // 
             // btnReset
@@ -260,6 +259,7 @@
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cité des métiers du 20 au 26 novembre";
+            this.Load += new System.EventHandler(this.frmMain_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.FrmMain_Paint);
             this.pnlCommandes.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

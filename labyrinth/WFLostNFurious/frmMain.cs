@@ -24,8 +24,10 @@ using System.Xml.Serialization;
 
 namespace WFLostNFurious
 {
+    
     public partial class frmMain : Form
     {
+        
         const string SERVER_ADDRESS = "http://127.0.0.1";
         const string GAME_INFO_FILE_PATH = "gameInfos.json";
         //Propriete
@@ -45,6 +47,7 @@ namespace WFLostNFurious
         //Constructeur
         public frmMain()
         {
+            
             InitializeComponent();
             DoubleBuffered = true;
             //on crée le personnage raichu avec la classe Personnage
@@ -55,8 +58,10 @@ namespace WFLostNFurious
             //
           //  SeparerCode();
             tmrCheckStatus.Enabled = true;
-        }
 
+            
+        }
+       
         /// <summary>
         /// Sépare le code recu pour ne garder que le code de fin
         /// </summary>
@@ -441,7 +446,19 @@ namespace WFLostNFurious
             //Affiche le labyrinthe
             CreateLabFromGrid(Jeu.MatriceLabyrinthe);
             Jeu.NouvelleArrivee(LstLabyrinthe);
+            
+            
         }
+       /* public  void RecupDate()
+        {
+            var DateAndTime = DateTime.Now;
+            var Date = DateAndTime.Date.ToString("dd-MM-yyyy");
+
+            //lbl6.Text = Date;
+
+
+
+        }*/
 
         /// <summary>
         /// Affiche les ellements de la form
@@ -543,6 +560,11 @@ namespace WFLostNFurious
 
             writer.Close();
             writer.Dispose();
+        }
+
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
