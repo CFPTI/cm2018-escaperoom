@@ -75,6 +75,7 @@ C:\Users\Gabriel.BNTT\Desktop\escapeGameSiteM\cm2018-escaperoom\labyrinth\WFLost
 C:\Users\Gabriel.BNTT\Desktop\escapeGameSiteM\cm2018-escaperoom\labyrinth\WFLostNFurious\obj\Debug\WFLostNFurious.csproj.CopyComplete
 C:\Users\Gabriel.BNTT\Desktop\escapeGameSiteM\cm2018-escaperoom\labyrinth\WFLostNFurious\obj\Debug\WFLostNFurious.exe
 C:\Users\Gabriel.BNTT\Desktop\escapeGameSiteM\cm2018-escaperoom\labyrinth\WFLostNFurious\obj\Debug\WFLostNFurious.pdb
+<<<<<<< HEAD
 C:\Users\David Vieira Luis\Downloads\labyrinthgABY\labyrinth\WFLostNFurious\bin\Debug\WFLostNFurious.exe.config
 C:\Users\David Vieira Luis\Downloads\labyrinthgABY\labyrinth\WFLostNFurious\bin\Debug\WFLostNFurious.exe
 C:\Users\David Vieira Luis\Downloads\labyrinthgABY\labyrinth\WFLostNFurious\bin\Debug\WFLostNFurious.pdb
@@ -88,3 +89,5 @@ C:\Users\David Vieira Luis\Downloads\labyrinthgABY\labyrinth\WFLostNFurious\obj\
 C:\Users\David Vieira Luis\Downloads\labyrinthgABY\labyrinth\WFLostNFurious\obj\Debug\WFLostNFurious.csproj.CopyComplete
 C:\Users\David Vieira Luis\Downloads\labyrinthgABY\labyrinth\WFLostNFurious\obj\Debug\WFLostNFurious.exe
 C:\Users\David Vieira Luis\Downloads\labyrinthgABY\labyrinth\WFLostNFurious\obj\Debug\WFLostNFurious.pdb
+=======
+>>>>>>> 581b07121fb746df7e27b7dc193e2d4f15a12905
