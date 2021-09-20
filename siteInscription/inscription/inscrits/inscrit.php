@@ -1,6 +1,8 @@
 <?php
 require_once "fonctionsBD.inc.php";
 $conn = connexionBase();
+
+$jourFiltre = filter_input(INPUT_POST, 'filtre');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,15 +18,25 @@ $conn = connexionBase();
 <body>
     <h1>Liste des inscrits</h1>
     <main>
+
         <form action="" method="post">
+            <select name="filtre" id="filtre">
+                <option value="mardi">mardi</option>
+                <option value="mercredi">mercredi</option>
+                <option value="jeudi">jeudi</option>
+                <option value="vendredi">vendredi</option>
+                <option value="samedi">samedi</option>
+                <option value="dimanche">dimanche</option>
+            </select>
             <table>
                 <th>Id rendez-vous</th>
                 <th>Nom de réservation</th>
                 <th>Heure de réservation</th>
                 <th>Jour de réservation</th>
                 <?php
+                var_dump($jourFiltre);
                 //Affiche chaque nom de la reservation de la table inscrit 
-                $rdv = $conn->query("SELECT * FROM inscrits INNER JOIN rdv ON inscrits.idRdv = rdv.idRdv ORDER BY jour");
+                $rdv = $conn->query("SELECT * FROM inscrits INNER JOIN rdv ON inscrits.idRdv = rdv.idRdv WHERE rdv.jour = 'jeudi' ");
                 if ($rdv->rowCount() > 0) {
                     while ($row = $rdv->fetchAll()) {
                         for ($i = 0; $i < count($row); $i++) { ?> <tr>
@@ -39,6 +51,7 @@ $conn = connexionBase();
                             }
                         } ?>
             </table>
+            <input type="submit" value="shgsh">
         </form>
         <a href="../index.php" class="back">Retour</a>
     </main>
