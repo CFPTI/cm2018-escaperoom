@@ -59,14 +59,37 @@ function addInscrit($nomReservation, $nbPersonne, $lastest_id)
 function deleteRdv()
 {
     $conn = connexionBase();
-    $idRdv = $_GET['idRdv'];
+    $idRdv = filter_input(INPUT_GET, 'idRdv', FILTER_VALIDATE_INT);
     //supprimer un rendez-vous
     try {
-        $query = $conn->prepare("delete from rdv where idRdv = $idRdv");
-        if ($query->execute()) {
+        $query = $conn->prepare("DELETE FROM rdv WHERE idRdv = $idRdv");
+        $query2 = $conn->prepare("DELETE FROM inscrits WHERE idRdv = $idRdv");
+        if ($query->execute() && $query2->execute()) {
             header("location:inscrit.php");
+            die;
         }
     } catch (PDOException $Exception) {
         echo "Error: " . $Exception->getMessage();
+    }
+}
+function updateRdv($idRdv, $name, $day, $nbPersonne, $hour)
+{
+    $conn = connexionBase();
+    try {
+        $sql = "UPDATE rdv SET jour = :jour, heure = :heure  WHERE  idRdv = $idRdv ";
+        $update = $conn->prepare($sql);
+        $update->bindParam(':heure', $hour, PDO::PARAM_STR);
+        $update->bindParam(':jour', $day, PDO::PARAM_STR);
+        $update->execute();
+        $sql = "UPDATE inscrits, rdv SET  nomReservation = :nomReservation, nbPersonne = :nbPersonne WHERE rdv.idRdv = inscrits.idRdv AND rdv.idRdv = $idRdv ";
+        $update = $conn->prepare($sql);
+        $update->bindParam(':nomReservation', $name, PDO::PARAM_STR);
+        $update->bindParam(':nbPersonne', $nbPersonne, PDO::PARAM_INT);
+        $update->execute();
+
+        header("Location:inscrit.php");
+        die;
+    } catch (PDOException $Exception) {
+        die("Une erreure est survenue lors de la modification " . $Exception->getMessage());
     }
 }

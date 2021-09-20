@@ -33,6 +33,7 @@ $conn = connexionBase();
                                 <td><?= $row[$i]['heure'] ?></td>
                                 <td><?= $row[$i]['jour'] ?></td>
                                 <td><a href="delete.php?idRdv=<?= $row[$i]['idRdv']; ?>">Supprimer</a></td>
+                                <td><a href="update.php?idRdv=<?= $row[$i]['idRdv']; ?>">Modifier</a></td>
                             </tr> <?php
                                 }
                             }
