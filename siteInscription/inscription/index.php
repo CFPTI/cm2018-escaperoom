@@ -22,8 +22,8 @@ if (isset($_POST['submit'])) {
     $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
     $day = filter_input(INPUT_POST, 'day', FILTER_SANITIZE_STRING);
     $nbPerson = filter_input(INPUT_POST, 'nbPerson', FILTER_SANITIZE_STRING);
-    $hour = explode("_", $_POST["submit"]);
-    addRdv($day, $hour[1], $name, $nbPerson);
+    $hour = explode("_", $_POST["submit"])[1];
+    addRdv($day, $hour, $name, $nbPerson);
     header("Location:inscrits/inscrit.php");
 }
 
