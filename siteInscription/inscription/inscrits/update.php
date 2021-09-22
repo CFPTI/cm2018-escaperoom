@@ -1,7 +1,17 @@
 <?php
-require_once "inscrits/fonctionsBD.inc.php";
+require_once "fonctionsBD.inc.php";
 define("HEURE_DEBUT", 9);
 define("HEURE_FIN", 19);
+$conn = connexionBase();
+$idRdv = filter_input(INPUT_GET, 'idRdv', FILTER_VALIDATE_INT);
+try {
+    $sql = $conn->prepare("select jour, heure, nomReservation, nbPersonne FROM rdv, inscrits WHERE rdv.idRdv = $idRdv AND rdv.idRdv = inscrits.idRdv ");
+    $sql->execute();
+    $result = $sql->fetch();
+} catch (PDOException $Exception) {
+    echo "Error: " . $Exception->getMessage();
+}
+
 
 $jours = ["mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche"];
 
@@ -23,8 +33,7 @@ if (isset($_POST['submit'])) {
     $day = filter_input(INPUT_POST, 'day', FILTER_SANITIZE_STRING);
     $nbPerson = filter_input(INPUT_POST, 'nbPerson', FILTER_SANITIZE_STRING);
     $hour = explode("_", $_POST["submit"])[1];
-    addRdv($day, $hour, $name, $nbPerson);
-    header("Location:inscrits/inscrit.php");
+    updateRdv($idRdv, $name, $day, $nbPerson, $hour);
 }
 
 
@@ -52,21 +61,21 @@ function afficherTableauHeures()
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscription a l'escape game</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
 
-    <form action="index.php" method="post">
+    <form action="#" method="post">
         <header>
             <h1>INSCRIPTION ESCAPE GAME</h1>
             <p>
                 Nom de réservation :
-                <input type="text" name="name" required>
+                <input type="text" name="name" value="<?= $result['nomReservation']; ?>" required>
             </p>
             <p>
                 Nombre de personnes :
-                <input type="number" name="nbPerson" required>
+                <input type="number" name="nbPerson" value="<?= $result['nbPersonne']; ?>" required>
             </p>
             <p>Jour :
                 <select required name="day" id="day" onchange="changeDay()">
@@ -84,8 +93,6 @@ function afficherTableauHeures()
             <?php afficherTableauHeures(); ?>
             <br>
             <button type="submit" name="submit" value="submit_" id="submit">Valider</button>
-            <br>
-            <a href="inscrits/inscrit.php" class="listeRDV">Liste des rdv</a>
         </main>
     </form>
     <script>

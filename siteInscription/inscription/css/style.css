@@ -80,7 +80,7 @@ button:hover{
 }
 
 .selected{
-    background-color: rgb(211, 211, 211);
+    background-color: white;
     color: rgb(0, 0, 0);
 }
 .pris{
