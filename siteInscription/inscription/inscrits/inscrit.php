@@ -3,6 +3,9 @@ require_once "fonctionsBD.inc.php";
 $conn = connexionBase();
 
 $jourFiltre = filter_input(INPUT_POST, 'filtre');
+
+$jours = ["mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche"];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,25 +21,42 @@ $jourFiltre = filter_input(INPUT_POST, 'filtre');
 <body>
     <h1>Liste des inscrits</h1>
     <main>
-
         <form action="" method="post">
-            <select name="filtre" id="filtre">
+            <?php
+            echo '<select name="filtre" id="filtre" onchange="changeDayView()">';
+
+            foreach ($jours as $value) {
+
+                # if the current month the user has selected is the same month as the
+                # one in $value on this iteration, mark this option as the selected option.
+                if ($jourFiltre == $value) {
+                    $sel = 'selected';
+                } else {
+                    # this option is not selected
+                    $sel = '';
+                }
+
+                # create the option, and mark it as selected if needed.
+                echo "<option value=\"$value\" $sel>$value</option>";
+            }
+
+            echo '</select>'; ?>
+            <!--<select name="filtre" id="filtre" onchange="changeDayView()">
                 <option value="mardi">mardi</option>
                 <option value="mercredi">mercredi</option>
                 <option value="jeudi">jeudi</option>
                 <option value="vendredi">vendredi</option>
                 <option value="samedi">samedi</option>
                 <option value="dimanche">dimanche</option>
-            </select>
+            </select>-->
             <table>
                 <th>Id rendez-vous</th>
                 <th>Nom de réservation</th>
                 <th>Heure de réservation</th>
                 <th>Jour de réservation</th>
                 <?php
-                var_dump($jourFiltre);
                 //Affiche chaque nom de la reservation de la table inscrit 
-                $rdv = $conn->query("SELECT * FROM inscrits INNER JOIN rdv ON inscrits.idRdv = rdv.idRdv WHERE rdv.jour = 'jeudi' ");
+                $rdv = $conn->query("SELECT * FROM inscrits INNER JOIN rdv ON inscrits.idRdv = rdv.idRdv WHERE rdv.jour = '$jourFiltre'");
                 if ($rdv->rowCount() > 0) {
                     while ($row = $rdv->fetchAll()) {
                         for ($i = 0; $i < count($row); $i++) { ?> <tr>
@@ -51,10 +71,15 @@ $jourFiltre = filter_input(INPUT_POST, 'filtre');
                             }
                         } ?>
             </table>
-            <input type="submit" value="shgsh">
+            <input type="submit" id="submitButton" value="test" hidden>
         </form>
         <a href="../index.php" class="back">Retour</a>
     </main>
+    <script>
+        function changeDayView() {
+            submitButton.click();
+        }
+    </script>
 </body>
 
 </html>
