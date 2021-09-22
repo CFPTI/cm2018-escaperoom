@@ -5,6 +5,8 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+
 
 namespace WFLostNFurious
 {
@@ -36,7 +38,7 @@ namespace WFLostNFurious
         public const int TAILLE_BLOC_X = 70;
         public const int TAILLE_BLOC_Y = 70;
 
-        public const string CODE_DE_BASE = "F";
+        public const string CODE_DE_BASE = "A";
         #endregion
 
         #region Propriete
@@ -181,18 +183,18 @@ namespace WFLostNFurious
 
         static public string RecevoirInfos()
         {
-            /*
-            var Calendrier = new Dictionary<string, string> { { "2021-09-15", "A" }, { "2021-09-16", "D" }, / etc / };
-            foreach (var item in Calendrier)
+            
+           // var Calendrier = new Dictionary<string, string> { { "2021-09-15", "A" }, { "2021-09-16", "D" }, /* etc */};
+           /* foreach (var item in Calendrier)
             {
                 if (RecupDate() == item.Key)
                 {
                     return item.Value;
                 }
             }
-            return null;
-*/
-            return CODE_DE_BASE;
+            return null;*/
+           
+           return CODE_DE_BASE;
 
         }
 

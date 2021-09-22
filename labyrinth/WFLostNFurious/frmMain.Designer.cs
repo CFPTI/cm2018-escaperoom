@@ -39,7 +39,6 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnViderListe = new System.Windows.Forms.Button();
             this.fichierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnStartGame = new System.Windows.Forms.Button();
             this.pnlInstructions = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -47,6 +46,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tmrCheckStatus = new System.Windows.Forms.Timer(this.components);
+            this.btnStartGame = new System.Windows.Forms.Button();
             this.pnlCommandes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pnlInstructions.SuspendLayout();
@@ -168,17 +168,6 @@
             this.fichierToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
             this.fichierToolStripMenuItem.Text = "Fichier";
             // 
-            // btnStartGame
-            // 
-            this.btnStartGame.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.btnStartGame.Location = new System.Drawing.Point(665, 269);
-            this.btnStartGame.Name = "btnStartGame";
-            this.btnStartGame.Size = new System.Drawing.Size(561, 520);
-            this.btnStartGame.TabIndex = 10;
-            this.btnStartGame.Text = "Commencer";
-            this.btnStartGame.UseVisualStyleBackColor = true;
-            this.btnStartGame.Click += new System.EventHandler(this.BtnStartGame_Click);
-            // 
             // pnlInstructions
             // 
             this.pnlInstructions.Controls.Add(this.label5);
@@ -245,6 +234,17 @@
             this.tmrCheckStatus.Interval = 1000;
             this.tmrCheckStatus.Tick += new System.EventHandler(this.tmrCheckStatus_Tick);
             // 
+            // btnStartGame
+            // 
+            this.btnStartGame.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.btnStartGame.Location = new System.Drawing.Point(665, 269);
+            this.btnStartGame.Name = "btnStartGame";
+            this.btnStartGame.Size = new System.Drawing.Size(561, 520);
+            this.btnStartGame.TabIndex = 10;
+            this.btnStartGame.Text = "Commencer";
+            this.btnStartGame.UseVisualStyleBackColor = true;
+            this.btnStartGame.Click += new System.EventHandler(this.BtnStartGame_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -282,7 +282,6 @@
         private System.Windows.Forms.Panel pnlCommandes;
         private System.Windows.Forms.Button btnViderListe;
         private System.Windows.Forms.ToolStripMenuItem fichierToolStripMenuItem;
-        private System.Windows.Forms.Button btnStartGame;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel pnlInstructions;
         private System.Windows.Forms.Label label4;
@@ -291,6 +290,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Timer tmrCheckStatus;
+        private System.Windows.Forms.Button btnStartGame;
     }
 }
 

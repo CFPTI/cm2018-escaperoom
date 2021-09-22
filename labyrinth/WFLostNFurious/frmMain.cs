@@ -24,12 +24,12 @@ using System.Xml.Serialization;
 
 namespace WFLostNFurious
 {
-    
+
     public partial class frmMain : Form
     {
-        
+
         const string SERVER_ADDRESS = "http://127.0.0.1";
-        const string GAME_INFO_FILE_PATH = "gameInfos.json";
+        const string GAME_INFO_FILE_PATH = "solution.json";
         //Propriete
         enum Direction { Haut, Bas, Gauche, Droite };
 
@@ -37,6 +37,7 @@ namespace WFLostNFurious
         Personnage personnageRaichu;    //Personnage du jeu
         List<Bloc> lstLabyrinthe;       //Liste de tous les blocs du labyrithe
         List<string> lstInstruction;    //Liste de toutes les instructions
+        DbConnect ConnectionDB = new DbConnect();
 
         //Champs
         public string CodeAAfficher { get => codeAAfficher; set => codeAAfficher = value; }
@@ -47,7 +48,7 @@ namespace WFLostNFurious
         //Constructeur
         public frmMain()
         {
-            
+
             InitializeComponent();
             DoubleBuffered = true;
             //on crée le personnage raichu avec la classe Personnage
@@ -56,26 +57,33 @@ namespace WFLostNFurious
             LstLabyrinthe = new List<Bloc>();
             LstInstruction = new List<string>();
             //
-          //  SeparerCode();
+            //  SeparerCode();
             tmrCheckStatus.Enabled = true;
 
-            
+
+
+
+
         }
-       
+
         /// <summary>
         /// Sépare le code recu pour ne garder que le code de fin
         /// </summary>
+        /// 
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         public void SeparerCode()
         {
             try
             {
+                //string jsonReceived = Jeu.RecevoirInfos(/*SERVER_ADDRESS + "/webdispatcher/soluce.php"*/);
                 string jsonReceived = Jeu.RecevoirInfos(/*SERVER_ADDRESS + "/webdispatcher/soluce.php"*/);
 
                 JSONParser jsonData = new JSONParser(jsonReceived);
 
                 WriteGameInfosData(jsonReceived);
 
-                this.CodeAAfficher = jsonData.GetValue("soluce2");
+                this.CodeAAfficher = jsonData.GetValue("en2");
             }
             catch (Exception)
             {
@@ -167,6 +175,7 @@ namespace WFLostNFurious
         /// </summary>
         private void Gagner()
         {
+
             //Appele page php pour fin partie
             Jeu.RecevoirInfos(/*SERVER_ADDRESS + "/webdispatcher/step2.php"*/);
             //Fini la partie
@@ -207,8 +216,9 @@ namespace WFLostNFurious
 
             Label lblCode = new Label()
             {
+                
                 Location = new Point(Jeu.POSITION_CODE_VICTOIRE_X, Jeu.POSITION_CODE_VICTOIRE_Y),
-                Text = $"Le code est : {Jeu.RecevoirInfos()}",
+                Text = $"Ce code vous aidera \n\r pour une énigme : {Jeu.RecevoirInfos()}",
                 AutoSize = false,
                 Size = new Size(this.Width, this.Height),
                 Font = new Font("Arial", 75),
@@ -288,6 +298,7 @@ namespace WFLostNFurious
         /// <param name="e"></param>
         private void BtnPlay_Click(object sender, EventArgs e)
         {
+            //ConnectionDB.OpenConnection();
             string cheat = "";
 
             foreach (string s in lbxInstruction.Items)
@@ -437,6 +448,7 @@ namespace WFLostNFurious
         /// <param name="e"></param>
         private void BtnStartGame_Click(object sender, EventArgs e)
         {
+            ConnectionDB.OpenConnection();
             btnStartGame.Visible = false;
             Jeu.EstEnJeu = true;
 
@@ -448,16 +460,16 @@ namespace WFLostNFurious
             Jeu.NouvelleArrivee(LstLabyrinthe);
 
         }
-       /* public  void RecupDate()
-        {
-            var DateAndTime = DateTime.Now;
-            var Date = DateAndTime.Date.ToString("dd-MM-yyyy");
+        /* public  void RecupDate()
+         {
+             var DateAndTime = DateTime.Now;
+             var Date = DateAndTime.Date.ToString("dd-MM-yyyy");
 
-            //lbl6.Text = Date;
+             //lbl6.Text = Date;
 
 
 
-        }*/
+         }*/
 
         /// <summary>
         /// Affiche les ellements de la form
@@ -517,38 +529,37 @@ namespace WFLostNFurious
         private void tmrCheckStatus_Tick(object sender, EventArgs e)
         {
 
-            StreamReader file = File.OpenText(GAME_INFO_FILE_PATH);
+           
 
-            string gameInfos = file.ReadToEnd();
+          
 
-            file.Close();
-            file.Dispose();
 
-            JSONParser JSONGameInfos = new JSONParser(gameInfos);
+            /* try
+             {
+                 //on essaye de se connecter à la base de donnée avec l'adresse du serveur dans la variable SERVER_ADDRESS qui se trouve tout en haut
+            string jsonReceived = Jeu.RecevoirInfos(SERVER_ADDRESS + "/webdispatcher/soluce.php");
 
-           /* try
-            {
-                //on essaye de se connecter à la base de donnée avec l'adresse du serveur dans la variable SERVER_ADDRESS qui se trouve tout en haut
-                string jsonReceived = Jeu.RecevoirInfos(SERVER_ADDRESS + "/webdispatcher/soluce.php");
 
-                JSONParser jsonData = new JSONParser(jsonReceived);
+                 string jsonReceived = Jeu.RecevoirInfos(SERVER_ADDRESS + "/webdispatcher/soluce.php");
 
-                string oldIdGame = JSONGameInfos.GetValue("idGame");
-                string receivedIdGame = jsonData.GetValue("idGame");
-                string step1Date = jsonData.GetValue("step1");
-                string step2Date = jsonData.GetValue("step2");
+                 JSONParser jsonData = new JSONParser(jsonReceived);
 
-                if (receivedIdGame != oldIdGame && step1Date == "null" && step2Date == "null")
-                {
-                    WriteGameInfosData(jsonReceived);
+                 string oldIdGame = JSONGameInfos.GetValue("idGame");
+                 string receivedIdGame = jsonData.GetValue("idGame");
+                 string step1Date = jsonData.GetValue("step1");
+                 string step2Date = jsonData.GetValue("step2");
 
-                    Application.Restart();
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }*/
+                 if (receivedIdGame != oldIdGame && step1Date == "null" && step2Date == "null")
+                 {
+                     WriteGameInfosData(jsonReceived);
+
+                     Application.Restart();
+                 }
+             }
+             catch (Exception ex)
+             {
+                 Console.WriteLine(ex.Message);
+             }*/
         }
 
         private void WriteGameInfosData(string data)
