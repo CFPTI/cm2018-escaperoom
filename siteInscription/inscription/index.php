@@ -9,15 +9,6 @@ foreach ($jours as $jour) {
     $listTime[$jour] = getTime($jour);
 }
 
-
-$results = "";
-// foreach($listTime as $time){
-//     $results .= $time["jour"]."-".$time["heure"];
-// }
-echo $results;
-$date = explode("-", $results);
-
-
 if (isset($_POST['submit'])) {
     $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
     $day = filter_input(INPUT_POST, 'day', FILTER_SANITIZE_STRING);
@@ -27,7 +18,7 @@ if (isset($_POST['submit'])) {
     header("Location:inscrits/inscrit.php");
 }
 
-
+//création du tableau des heures
 function afficherTableauHeures()
 {
     $tableauMinutes = ["00", "20", "40"];
@@ -89,6 +80,7 @@ function afficherTableauHeures()
         </main>
     </form>
     <script>
+        // séléction des heures
         function heureChoisie(heure, sender) {
             if (sender.getAttribute("class") !== null && sender.getAttribute("class").includes("pris")) {
                 return false;
@@ -124,6 +116,7 @@ function afficherTableauHeures()
         echo "};";
         ?>
 
+//seléction des dates déja prises
         function changeDay() {
             let day = document.getElementById("day");
             let rdvPris = jh[day.value];
@@ -131,8 +124,6 @@ function afficherTableauHeures()
             let table = document.getElementById("tableHeure");
             for (let i in table.rows) {
                 let row = table.rows[i];
-                //iterate through rows
-                //rows would be accessed using the "row" variable assigned in the for loop
                 for (let j in row.cells) {
                     let col = row.cells[j];
                     if (col.nodeName == "TD") {

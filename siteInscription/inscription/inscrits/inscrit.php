@@ -3,7 +3,7 @@ require_once "fonctionsBD.inc.php";
 $conn = connexionBase();
 
 $jourFiltre = filter_input(INPUT_POST, 'filtre');
-
+//liste des jours
 $jours = ["mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche"];
 
 ?>
@@ -14,7 +14,7 @@ $jours = ["mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche"];
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Liste des Inscrits</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
 
@@ -24,31 +24,18 @@ $jours = ["mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche"];
         <form action="" method="post">
             <?php
             echo '<select name="filtre" id="filtre" onchange="changeDayView()">';
-
+//création d'un select de filtrage de jours
             foreach ($jours as $value) {
-
-                # if the current month the user has selected is the same month as the
-                # one in $value on this iteration, mark this option as the selected option.
+              
                 if ($jourFiltre == $value) {
                     $sel = 'selected';
                 } else {
-                    # this option is not selected
                     $sel = '';
                 }
-
-                # create the option, and mark it as selected if needed.
                 echo "<option value=\"$value\" $sel>$value</option>";
             }
 
             echo '</select>'; ?>
-            <!--<select name="filtre" id="filtre" onchange="changeDayView()">
-                <option value="mardi">mardi</option>
-                <option value="mercredi">mercredi</option>
-                <option value="jeudi">jeudi</option>
-                <option value="vendredi">vendredi</option>
-                <option value="samedi">samedi</option>
-                <option value="dimanche">dimanche</option>
-            </select>-->
             <table>
                 <th>Id rendez-vous</th>
                 <th>Nom de réservation</th>
