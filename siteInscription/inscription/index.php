@@ -34,6 +34,7 @@ function afficherTableauHeures()
 
     echo "</table>";
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,14 +51,14 @@ function afficherTableauHeures()
     <form action="index.php" method="post">
         <header>
             <h1>INSCRIPTION ESCAPE GAME</h1>
-            <img class="logo" src="img/logo.png" alt="logo" >
+            <img class="logo" src="img/logo.png" alt="logo">
             <p>
                 Nom de réservation :
                 <input type="text" name="name" required>
             </p>
             <p>
                 Nombre de personnes :
-                <input type="number" name="nbPerson" required>
+                <input type="number" name="nbPerson" id="nbPerson" min="1" max="3" required>
             </p>
             <p>Jour :
                 <select required name="day" id="day" onchange="changeDay()">
@@ -69,7 +70,7 @@ function afficherTableauHeures()
                     <option value="dimanche">dimanche</option>
                 </select>
             </p>
-            
+
         </header>
         <main>
             <?php afficherTableauHeures(); ?>
@@ -133,6 +134,18 @@ function afficherTableauHeures()
                         }
                     }
                 }
+            }
+        }
+
+        const NUMBER_MAX = 3;
+        const inputNumber = document.getElementById("nbPerson");
+        let number = document.getElementById("nbPerson");
+
+        inputNumber.addEventListener('change', verifNumber);
+
+        function verifNumber(e) {
+            if (number.value > NUMBER_MAX) {
+                document.getElementById("nbPerson").value = 3;
             }
         }
         changeDay();

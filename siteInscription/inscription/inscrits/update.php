@@ -75,7 +75,7 @@ function afficherTableauHeures()
             </p>
             <p>
                 Nombre de personnes :
-                <input type="number" name="nbPerson" value="<?= $result['nbPersonne']; ?>" required>
+                <input type="number" name="nbPerson" id="nbPerson" min="1" max="3" value="<?= $result['nbPersonne']; ?>" required>
             </p>
             <p>Jour :
                 <select required name="day" id="day" onchange="changeDay()">
@@ -149,6 +149,17 @@ function afficherTableauHeures()
                         }
                     }
                 }
+            }
+        }
+        const NUMBER_MAX = 3;
+        const inputNumber = document.getElementById("nbPerson");
+        let number = document.getElementById("nbPerson");
+
+        inputNumber.addEventListener('change', verifNumber);
+
+        function verifNumber(e) {
+            if (number.value > NUMBER_MAX) {
+                document.getElementById("nbPerson").value = 3;
             }
         }
         changeDay();
