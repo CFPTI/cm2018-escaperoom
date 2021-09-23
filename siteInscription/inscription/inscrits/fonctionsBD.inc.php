@@ -49,7 +49,7 @@ function addRdv($day, $hour, $nomReservation, $nbPersonne)
 function addInscrit($nomReservation, $nbPersonne, $lastest_id)
 {
     $conn = connexionBase();
-    $query = $conn->prepare('INSERT INTO inscrits (nomReservation,nbPersonne,idRdv) VALUES (:nomReservation,:nbPersonne,:idRdv)');
+    $query = $conn->prepare('INSERT INTO inscrits (nomReservation,nbPersonne,idRdv) VALUES (:nomReservation,:nbPersonsTotal,:idRdv)');
     $query->bindParam(':nomReservation', $nomReservation, PDO::PARAM_STR);
     $query->bindParam(':nbPersonne', $nbPersonne, PDO::PARAM_INT);
     $query->bindParam(':idRdv', $lastest_id, PDO::PARAM_INT);
@@ -92,5 +92,18 @@ function updateRdv($idRdv, $name, $day, $nbPersonne, $hour)
         die;
     } catch (PDOException $Exception) {
         die("Une erreure est survenue lors de la modification " . $Exception->getMessage());
+    }
+}
+//récuperer le total de personnes
+function getTotalOfPersons()
+{
+    $conn = connexionBase();
+    try {
+        $sql = "SELECT SUM(nbPersonne) FROM `inscrits`";
+        $nbPersonneTotal = $conn->prepare($sql);
+        $nbPersonneTotal->execute();
+        return $nbPersonneTotal->fetch()[0];
+    } catch (PDOException $Exception) {
+        die("Une erreure est survenue" . $Exception->getMessage());
     }
 }

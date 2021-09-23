@@ -2,6 +2,7 @@
 require_once "fonctionsBD.inc.php";
 define("HEURE_DEBUT", 9);
 define("HEURE_FIN", 19);
+define("NUMBER_MAX", 3);
 $conn = connexionBase();
 $errorMessage = "";
 //récupère l'id dans l'url

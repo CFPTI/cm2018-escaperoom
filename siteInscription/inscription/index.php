@@ -88,6 +88,11 @@ function afficherTableauHeures()
             <button type="submit" name="submit" value="submit_" id="submit">Valider</button>
             <br>
             <a href="inscrits/inscrit.php" class="listeRDV">Liste des rdv</a>
+            <br>
+            <br>
+            <br>
+            <br>
+            <a href="info.php" class="listeRDV">Info</a>
         </main>
     </form>
     <script>
