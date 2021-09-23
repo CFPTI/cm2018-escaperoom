@@ -2,20 +2,30 @@
 require_once "inscrits/fonctionsBD.inc.php";
 define("HEURE_DEBUT", 9);
 define("HEURE_FIN", 19);
-
+define("NUMBER_MAX", 3);
+$errorMessage = "";
 $jours = ["mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche"];
 
 foreach ($jours as $jour) {
     $listTime[$jour] = getTime($jour);
 }
-
+//si validation du formulaire
 if (isset($_POST['submit'])) {
+    //recupération des champs
     $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
     $day = filter_input(INPUT_POST, 'day', FILTER_SANITIZE_STRING);
     $nbPerson = filter_input(INPUT_POST, 'nbPerson', FILTER_SANITIZE_STRING);
     $hour = explode("_", $_POST["submit"])[1];
-    addRdv($day, $hour, $name, $nbPerson);
-    header("Location:inscrits/inscrit.php");
+    //vérification des champs nom et nombre de personnnes
+    if (intval($nbPerson) > NUMBER_MAX || intval($nbPerson) == null) {
+        $errorMessage = "Le nombre de personne n'est pas valide";
+    } else if ($name == "") {
+        $errorMessage = "Le champs nom est obligatoire";
+    } else {
+        //ajout du rdv
+        addRdv($day, $hour, $name, $nbPerson);
+        header("Location:inscrits/inscrit.php");
+    }
 }
 
 //création du tableau des heures
@@ -51,7 +61,7 @@ function afficherTableauHeures()
     <form action="index.php" method="post">
         <header>
             <h1>INSCRIPTION ESCAPE GAME</h1>
-            <img class="logo" src="img/logo.png" alt="logo">
+            <a target="_blank" href="https://edu.ge.ch/site/cfpt-informatique/"><img class="logo" src="img/logo.png" alt="logo"></a>
             <p>
                 Nom de réservation :
                 <input type="text" name="name" required>
@@ -70,7 +80,7 @@ function afficherTableauHeures()
                     <option value="dimanche">dimanche</option>
                 </select>
             </p>
-
+            <?php echo "<p class='erreur'>" . $errorMessage . "</p>"; ?>
         </header>
         <main>
             <?php afficherTableauHeures(); ?>
@@ -117,7 +127,7 @@ function afficherTableauHeures()
         echo "};";
         ?>
 
-//seléction des dates déja prises
+        //seléction des dates déja prises
         function changeDay() {
             let day = document.getElementById("day");
             let rdvPris = jh[day.value];
@@ -136,20 +146,22 @@ function afficherTableauHeures()
                 }
             }
         }
-
+        //verification du champs nombre
         const NUMBER_MAX = 3;
         const inputNumber = document.getElementById("nbPerson");
         let number = document.getElementById("nbPerson");
 
         inputNumber.addEventListener('change', verifNumber);
 
-        function verifNumber(e) {
+        function verifNumber() {
             if (number.value > NUMBER_MAX) {
-                document.getElementById("nbPerson").value = 3;
+                document.getElementById("nbPerson").value = NUMBER_MAX;
             }
         }
         changeDay();
     </script>
+
+
 </body>
 
 </html>

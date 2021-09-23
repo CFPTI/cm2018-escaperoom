@@ -1,7 +1,7 @@
 <?php
 require_once "fonctionsBD.inc.php";
 $conn = connexionBase();
-
+//récupère le jour séléctionné
 $jourFiltre = filter_input(INPUT_POST, 'filtre');
 //liste des jours
 $jours = ["mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche"];
@@ -20,13 +20,14 @@ $jours = ["mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche"];
 
 <body>
     <h1>Liste des inscrits</h1>
+    <a target="_blank" href="https://edu.ge.ch/site/cfpt-informatique/"><img class="logo" src="../img/logo.png" alt="logo"></a>
     <main>
         <form action="" method="post">
             <?php
             echo '<select name="filtre" id="filtre" onchange="changeDayView()">';
-//création d'un select de filtrage de jours
+            //création d'un select de filtrage de jours
             foreach ($jours as $value) {
-              
+
                 if ($jourFiltre == $value) {
                     $sel = 'selected';
                 } else {
@@ -42,7 +43,7 @@ $jours = ["mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche"];
                 <th>Heure de réservation</th>
                 <th>Jour de réservation</th>
                 <?php
-                //Affiche chaque nom de la reservation de la table inscrit 
+                //Affiche chaque reservation de la table inscrit 
                 $rdv = $conn->query("SELECT * FROM inscrits INNER JOIN rdv ON inscrits.idRdv = rdv.idRdv WHERE rdv.jour = '$jourFiltre'");
                 if ($rdv->rowCount() > 0) {
                     while ($row = $rdv->fetchAll()) {

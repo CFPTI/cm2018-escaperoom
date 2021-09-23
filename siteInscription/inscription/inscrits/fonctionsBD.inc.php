@@ -21,7 +21,7 @@ function getInscrits()
     $query->execute();
     $query->fetchAll(PDO::FETCH_ASSOC);
 }
-//recuppère le jour et l'heure de la table "rdv"
+//recupère le jour et l'heure de la table "rdv"
 function getTime($jour)
 {
     $query = connexionBase()->prepare("SELECT heure FROM rdv WHERE jour = :jour");
@@ -34,7 +34,7 @@ function getTime($jour)
     // }
     // return $result2;
 }
-
+//ajoute un rdv
 function addRdv($day, $hour, $nomReservation, $nbPersonne)
 {
     $conn = connexionBase();
@@ -45,6 +45,7 @@ function addRdv($day, $hour, $nomReservation, $nbPersonne)
     $lastest_id = $conn->lastInsertId();
     addInscrit($nomReservation, $nbPersonne, $lastest_id);
 }
+//ajoute une personne
 function addInscrit($nomReservation, $nbPersonne, $lastest_id)
 {
     $conn = connexionBase();
@@ -54,8 +55,7 @@ function addInscrit($nomReservation, $nbPersonne, $lastest_id)
     $query->bindParam(':idRdv', $lastest_id, PDO::PARAM_INT);
     $query->execute();
 }
-
-
+//supprime un rdv
 function deleteRdv()
 {
     $conn = connexionBase();
@@ -72,6 +72,7 @@ function deleteRdv()
         echo "Error: " . $Exception->getMessage();
     }
 }
+//modifie un rdv
 function updateRdv($idRdv, $name, $day, $nbPersonne, $hour)
 {
     $conn = connexionBase();

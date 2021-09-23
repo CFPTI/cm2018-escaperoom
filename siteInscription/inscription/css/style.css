@@ -108,3 +108,6 @@ button:hover {
     top: 2%;
     position: absolute;
 }
+.erreur{
+    color: red;
+}
