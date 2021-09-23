@@ -107,3 +107,16 @@ function getTotalOfPersons()
         die("Une erreure est survenue" . $Exception->getMessage());
     }
 }
+//récuperer le total de rdv
+function getTotalOfRdv()
+{
+    $conn = connexionBase();
+    try {
+        $sql = "SELECT count(*) FROM `rdv`";
+        $nbRdvTotal = $conn->prepare($sql);
+        $nbRdvTotal->execute();
+        return $nbRdvTotal->fetch()[0];
+    } catch (PDOException $Exception) {
+        die("Une erreure est survenue" . $Exception->getMessage());
+    }
+}
