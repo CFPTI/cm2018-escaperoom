@@ -2,32 +2,33 @@
 require_once "inscrits/fonctionsBD.inc.php";
 define("HEURE_DEBUT", 9);
 define("HEURE_FIN", 19);
-
+define("NUMBER_MAX", 3);
+$errorMessage = "";
 $jours = ["mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche"];
 
 foreach ($jours as $jour) {
     $listTime[$jour] = getTime($jour);
 }
-
-
-$results = "";
-// foreach($listTime as $time){
-//     $results .= $time["jour"]."-".$time["heure"];
-// }
-echo $results;
-$date = explode("-", $results);
-
-
+//si validation du formulaire
 if (isset($_POST['submit'])) {
+    //recupération des champs
     $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
     $day = filter_input(INPUT_POST, 'day', FILTER_SANITIZE_STRING);
     $nbPerson = filter_input(INPUT_POST, 'nbPerson', FILTER_SANITIZE_STRING);
     $hour = explode("_", $_POST["submit"])[1];
-    addRdv($day, $hour, $name, $nbPerson);
-    header("Location:inscrits/inscrit.php");
+    //vérification des champs nom et nombre de personnnes
+    if (intval($nbPerson) > NUMBER_MAX || intval($nbPerson) == null) {
+        $errorMessage = "Le nombre de personne n'est pas valide";
+    } else if ($name == "") {
+        $errorMessage = "Le champs nom est obligatoire";
+    } else {
+        //ajout du rdv
+        addRdv($day, $hour, $name, $nbPerson);
+        header("Location:inscrits/inscrit.php");
+    }
 }
 
-
+//création du tableau des heures
 function afficherTableauHeures()
 {
     $tableauMinutes = ["00", "20", "40"];
@@ -43,6 +44,7 @@ function afficherTableauHeures()
 
     echo "</table>";
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,14 +61,14 @@ function afficherTableauHeures()
     <form action="index.php" method="post">
         <header>
             <h1>INSCRIPTION ESCAPE GAME</h1>
-            <img class="logo" src="img/logo.png" alt="logo" >
+            <a target="_blank" href="https://edu.ge.ch/site/cfpt-informatique/"><img class="logo" src="img/logo.png" alt="logo"></a>
             <p>
                 Nom de réservation :
                 <input type="text" name="name" required>
             </p>
             <p>
                 Nombre de personnes :
-                <input type="number" name="nbPerson" required>
+                <input type="number" name="nbPerson" id="nbPerson" min="1" max="3" required>
             </p>
             <p>Jour :
                 <select required name="day" id="day" onchange="changeDay()">
@@ -78,7 +80,7 @@ function afficherTableauHeures()
                     <option value="dimanche">dimanche</option>
                 </select>
             </p>
-            
+            <?php echo "<p class='erreur'>" . $errorMessage . "</p>"; ?>
         </header>
         <main>
             <?php afficherTableauHeures(); ?>
@@ -86,9 +88,15 @@ function afficherTableauHeures()
             <button type="submit" name="submit" value="submit_" id="submit">Valider</button>
             <br>
             <a href="inscrits/inscrit.php" class="listeRDV">Liste des rdv</a>
+            <br>
+            <br>
+            <br>
+            <br>
+            <a href="info.php" class="listeRDV">Info</a>
         </main>
     </form>
     <script>
+        // séléction des heures
         function heureChoisie(heure, sender) {
             if (sender.getAttribute("class") !== null && sender.getAttribute("class").includes("pris")) {
                 return false;
@@ -124,6 +132,7 @@ function afficherTableauHeures()
         echo "};";
         ?>
 
+        //seléction des dates déja prises
         function changeDay() {
             let day = document.getElementById("day");
             let rdvPris = jh[day.value];
@@ -131,8 +140,6 @@ function afficherTableauHeures()
             let table = document.getElementById("tableHeure");
             for (let i in table.rows) {
                 let row = table.rows[i];
-                //iterate through rows
-                //rows would be accessed using the "row" variable assigned in the for loop
                 for (let j in row.cells) {
                     let col = row.cells[j];
                     if (col.nodeName == "TD") {
@@ -144,8 +151,22 @@ function afficherTableauHeures()
                 }
             }
         }
+        //verification du champs nombre
+        const NUMBER_MAX = 3;
+        const inputNumber = document.getElementById("nbPerson");
+        let number = document.getElementById("nbPerson");
+
+        inputNumber.addEventListener('change', verifNumber);
+
+        function verifNumber() {
+            if (number.value > NUMBER_MAX) {
+                document.getElementById("nbPerson").value = NUMBER_MAX;
+            }
+        }
         changeDay();
     </script>
+
+
 </body>
 
 </html>

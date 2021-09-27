@@ -4,10 +4,10 @@ body {
     background-color: rgb(192, 192, 192);
     background-image: url("../img/fond.png");
 }
-h1{
-    
+
+h1 {
     margin-top: 10px;
-    text-shadow:0 4px 0 #00ecff, 0 -4px 0 #ff4045;
+    text-shadow: 0 4px 0 #00ecff, 0 -4px 0 #ff4045;
     font-family: 'Russo One', sans-serif;
     text-align: center;
     font-size: 60px;
@@ -34,33 +34,26 @@ main {
     width: 70%;
     margin: auto;
     padding: 2%;
-    
-    
     text-align: center;
     box-shadow: 5px 5px 5px rgb(43, 43, 43);
 }
 
-
-/* table{
-    display: flexbox;
-} */
-
 td {
     text-align: center;
     border: 3px solid black;
-
     border-radius: 5px;
     padding: 1%;
     font-family: 'Russo One', sans-serif;
     background-color: rgb(180, 180, 180);
 }
-table{
+
+table {
     width: 90%;
     margin: auto;
     border-spacing: 15px;
 }
 
-button{
+button {
     display: inherit;
     width: 90%;
     margin: auto;
@@ -73,22 +66,23 @@ button{
     font-size: large;
 }
 
-button:hover{
+button:hover {
     background-color: green;
     color: white;
-
 }
 
-.selected{
+.selected {
     background-color: white;
     color: rgb(0, 0, 0);
 }
-.pris{
+
+.pris {
     background-image: url('../img/rayures.jpg');
     background-color: rgb(70, 70, 70);
     color: grey;
 }
-.listeRDV{
+
+.listeRDV {
     text-decoration: none;
     color: black;
     font-family: 'Russo One', sans-serif;
@@ -98,7 +92,7 @@ button:hover{
     box-shadow: 1px 1px 1px rgb(180, 180, 180);
 }
 
-.back{
+.back {
     background-color: rgb(255, 255, 255);
     font-family: 'Russo One', sans-serif;
     margin-top: 1%;
@@ -109,7 +103,11 @@ button:hover{
     text-decoration: none;
     color: black;
 }
-.logo{
+
+.logo {
     top: 2%;
     position: absolute;
+}
+.erreur{
+    color: red;
 }
