@@ -44,7 +44,8 @@ $jours = ["mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche"];
                 <th>Jour de réservation</th>
                 <?php
                 //Affiche chaque reservation de la table inscrit 
-                $rdv = $conn->query("SELECT * FROM inscrits INNER JOIN rdv ON inscrits.idRdv = rdv.idRdv WHERE rdv.jour = '$jourFiltre'");
+                $query = "SELECT * FROM inscrits INNER JOIN rdv ON inscrits.idRdv = rdv.idRdv WHERE rdv.jour = '$jourFiltre'";
+                $rdv = $conn->query($query);
                 if ($rdv->rowCount() > 0) {
                     while ($row = $rdv->fetchAll()) {
                         for ($i = 0; $i < count($row); $i++) { ?> <tr>

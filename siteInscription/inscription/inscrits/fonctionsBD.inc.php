@@ -14,7 +14,7 @@ function connexionBase()
     }
     return $dbb;
 }
-//recupère les nom des groupes de la table "inscits"
+//recupère les nom des groupes de la table "inscrits"
 function getInscrits()
 {
     $query = connexionBase()->prepare("SELECT nomReservation , jour,heure FROM inscrits INNER JOIN rdv ON inscrits.idRdv = rdv.idRdv ");
@@ -34,7 +34,7 @@ function getTime($jour)
     // }
     // return $result2;
 }
-//ajoute un rdv
+//ajouter un rdv
 function addRdv($day, $hour, $nomReservation, $nbPersonne)
 {
     $conn = connexionBase();
@@ -49,11 +49,17 @@ function addRdv($day, $hour, $nomReservation, $nbPersonne)
 function addInscrit($nomReservation, $nbPersonne, $lastest_id)
 {
     $conn = connexionBase();
-    $query = $conn->prepare('INSERT INTO inscrits (nomReservation,nbPersonne,idRdv) VALUES (:nomReservation,:nbPersonsTotal,:idRdv)');
+    $query = $conn->prepare('INSERT INTO inscrits (nomReservation,nbPersonne,idRdv) VALUES (:nomReservation,:nbPersonne,:idRdv)');
     $query->bindParam(':nomReservation', $nomReservation, PDO::PARAM_STR);
     $query->bindParam(':nbPersonne', $nbPersonne, PDO::PARAM_INT);
     $query->bindParam(':idRdv', $lastest_id, PDO::PARAM_INT);
-    $query->execute();
+    try {
+        $query->execute();
+    } catch (PDOException $Exception) {
+        echo "Error: " . $Exception->getMessage();
+
+        die;
+    }
 }
 //supprime un rdv
 function deleteRdv()
@@ -72,7 +78,7 @@ function deleteRdv()
         echo "Error: " . $Exception->getMessage();
     }
 }
-//modifie un rdv
+//modifier un rdv
 function updateRdv($idRdv, $name, $day, $nbPersonne, $hour)
 {
     $conn = connexionBase();
