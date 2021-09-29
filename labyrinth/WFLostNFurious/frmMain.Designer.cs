@@ -47,6 +47,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tmrCheckStatus = new System.Windows.Forms.Timer(this.components);
             this.btnStartGame = new System.Windows.Forms.Button();
+            this.btnRestart = new System.Windows.Forms.Button();
             this.pnlCommandes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pnlInstructions.SuspendLayout();
@@ -245,11 +246,29 @@
             this.btnStartGame.UseVisualStyleBackColor = true;
             this.btnStartGame.Click += new System.EventHandler(this.BtnStartGame_Click);
             // 
+            // btnRestart
+            // 
+            this.btnRestart.BackColor = System.Drawing.SystemColors.Control;
+            this.btnRestart.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnRestart.CausesValidation = false;
+            this.btnRestart.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btnRestart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRestart.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnRestart.Location = new System.Drawing.Point(12, 12);
+            this.btnRestart.Name = "btnRestart";
+            this.btnRestart.Size = new System.Drawing.Size(136, 69);
+            this.btnRestart.TabIndex = 12;
+            this.btnRestart.Text = "restart";
+            this.btnRestart.UseVisualStyleBackColor = false;
+            this.btnRestart.Visible = false;
+            this.btnRestart.Click += new System.EventHandler(this.btnRestart_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1920, 1070);
+            this.Controls.Add(this.btnRestart);
             this.Controls.Add(this.pnlInstructions);
             this.Controls.Add(this.btnStartGame);
             this.Controls.Add(this.pnlCommandes);
@@ -291,6 +310,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Timer tmrCheckStatus;
         private System.Windows.Forms.Button btnStartGame;
+        private System.Windows.Forms.Button btnRestart;
     }
 }
 

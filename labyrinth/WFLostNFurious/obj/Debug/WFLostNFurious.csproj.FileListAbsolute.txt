@@ -1,3 +1,8 @@
+C:\Users\David Vieira Luis\Desktop\CopieCiterDesMetiers\cm2018-escaperoom\labyrinth\WFLostNFurious\obj\Debug\WFLostNFurious.exe.config
+C:\Users\David Vieira Luis\Desktop\CopieCiterDesMetiers\cm2018-escaperoom\labyrinth\WFLostNFurious\obj\Debug\WFLostNFurious.frmMain.resources
+C:\Users\David Vieira Luis\Desktop\CopieCiterDesMetiers\cm2018-escaperoom\labyrinth\WFLostNFurious\obj\Debug\WFLostNFurious.Properties.Resources.resources
+C:\Users\David Vieira Luis\Desktop\CopieCiterDesMetiers\cm2018-escaperoom\labyrinth\WFLostNFurious\obj\Debug\WFLostNFurious.csproj.GenerateResource.cache
+C:\Users\David Vieira Luis\Desktop\CopieCiterDesMetiers\cm2018-escaperoom\labyrinth\WFLostNFurious\obj\Debug\WFLostNFurious.csproj.CoreCompileInputs.cache
 C:\Users\David Vieira Luis\Desktop\CopieCiterDesMetiers\cm2018-escaperoom\labyrinth\WFLostNFurious\bin\Debug\WFLostNFurious.exe.config
 C:\Users\David Vieira Luis\Desktop\CopieCiterDesMetiers\cm2018-escaperoom\labyrinth\WFLostNFurious\bin\Debug\WFLostNFurious.exe
 C:\Users\David Vieira Luis\Desktop\CopieCiterDesMetiers\cm2018-escaperoom\labyrinth\WFLostNFurious\bin\Debug\WFLostNFurious.pdb
@@ -15,11 +20,6 @@ C:\Users\David Vieira Luis\Desktop\CopieCiterDesMetiers\cm2018-escaperoom\labyri
 C:\Users\David Vieira Luis\Desktop\CopieCiterDesMetiers\cm2018-escaperoom\labyrinth\WFLostNFurious\bin\Debug\K4os.Hash.xxHash.dll
 C:\Users\David Vieira Luis\Desktop\CopieCiterDesMetiers\cm2018-escaperoom\labyrinth\WFLostNFurious\bin\Debug\MySql.Data.xml
 C:\Users\David Vieira Luis\Desktop\CopieCiterDesMetiers\cm2018-escaperoom\labyrinth\WFLostNFurious\bin\Debug\Newtonsoft.Json.xml
-C:\Users\David Vieira Luis\Desktop\CopieCiterDesMetiers\cm2018-escaperoom\labyrinth\WFLostNFurious\obj\Debug\WFLostNFurious.exe.config
-C:\Users\David Vieira Luis\Desktop\CopieCiterDesMetiers\cm2018-escaperoom\labyrinth\WFLostNFurious\obj\Debug\WFLostNFurious.frmMain.resources
-C:\Users\David Vieira Luis\Desktop\CopieCiterDesMetiers\cm2018-escaperoom\labyrinth\WFLostNFurious\obj\Debug\WFLostNFurious.Properties.Resources.resources
-C:\Users\David Vieira Luis\Desktop\CopieCiterDesMetiers\cm2018-escaperoom\labyrinth\WFLostNFurious\obj\Debug\WFLostNFurious.csproj.GenerateResource.cache
-C:\Users\David Vieira Luis\Desktop\CopieCiterDesMetiers\cm2018-escaperoom\labyrinth\WFLostNFurious\obj\Debug\WFLostNFurious.csproj.CoreCompileInputs.cache
 C:\Users\David Vieira Luis\Desktop\CopieCiterDesMetiers\cm2018-escaperoom\labyrinth\WFLostNFurious\obj\Debug\WFLostNFurious.csproj.CopyComplete
 C:\Users\David Vieira Luis\Desktop\CopieCiterDesMetiers\cm2018-escaperoom\labyrinth\WFLostNFurious\obj\Debug\WFLostNFurious.exe
 C:\Users\David Vieira Luis\Desktop\CopieCiterDesMetiers\cm2018-escaperoom\labyrinth\WFLostNFurious\obj\Debug\WFLostNFurious.pdb

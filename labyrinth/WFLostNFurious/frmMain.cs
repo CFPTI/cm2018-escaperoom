@@ -183,8 +183,9 @@ namespace WFLostNFurious
             //Le perso n'est plus en mouvement
             Jeu.EstEnMouvement = false;
             //Vide l'interface
-            Controls.Clear();
+            //Controls.Clear();
             Restart();
+            Visible();
             /*
             using (var tw = new StreamWriter("restarted.txt", true))
             {
@@ -231,7 +232,7 @@ namespace WFLostNFurious
                 Location = new Point(Jeu.POSITION_TEXT_VICTOIRE_X, Jeu.POSITION_TEXT_VICTOIRE_Y),
                 Text = $"Ce code vous aidera \n\r pour une énigme",
                 AutoSize = false,
-                Size = new Size(this.Width, this.Height),
+                Size = new Size(this.Width, 1200),
                 Font = new Font("Arial", 75),
                 TextAlign = ContentAlignment.MiddleCenter,
                 BackColor = Color.Transparent
@@ -281,6 +282,13 @@ namespace WFLostNFurious
             //Raichu se remet au départ
             PersonnageRaichu.Respawn();
 
+        }
+        
+        private void Visible()
+        {
+            pnlCommandes.Visible = false;
+            pnlInstructions.Visible = false;
+            btnRestart.Visible = true;
         }
 
         //Methodes de la form
@@ -587,6 +595,11 @@ namespace WFLostNFurious
         private void frmMain_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnRestart_Click(object sender, EventArgs e)
+        {
+            Application.Restart();
         }
     }
 }
