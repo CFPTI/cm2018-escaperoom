@@ -2,8 +2,12 @@
 require_once "fonctionsBD.inc.php";
 define("HEURE_DEBUT", 9);
 define("HEURE_FIN", 19);
+define("NUMBER_MAX", 3);
 $conn = connexionBase();
+$errorMessage = "";
+//récupère l'id dans l'url
 $idRdv = filter_input(INPUT_GET, 'idRdv', FILTER_VALIDATE_INT);
+
 try {
     $sql = $conn->prepare("select jour, heure, nomReservation, nbPersonne FROM rdv, inscrits WHERE rdv.idRdv = $idRdv AND rdv.idRdv = inscrits.idRdv ");
     $sql->execute();
@@ -19,21 +23,26 @@ foreach ($jours as $jour) {
     $listTime[$jour] = getTime($jour);
 }
 
-
 $results = "";
-// foreach($listTime as $time){
-//     $results .= $time["jour"]."-".$time["heure"];
-// }
 echo $results;
 $date = explode("-", $results);
 
 
 if (isset($_POST['submit'])) {
+    //recupération des champs
     $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
     $day = filter_input(INPUT_POST, 'day', FILTER_SANITIZE_STRING);
     $nbPerson = filter_input(INPUT_POST, 'nbPerson', FILTER_SANITIZE_STRING);
     $hour = explode("_", $_POST["submit"])[1];
-    updateRdv($idRdv, $name, $day, $nbPerson, $hour);
+    //vérification des champs nom et nombre de personnnes
+    if (intval($nbPerson) > NUMBER_MAX || intval($nbPerson) == null) {
+        $errorMessage = "Le nombre de personne n'est pas valide";
+    } else if ($name == "") {
+        $errorMessage = "Le champs nom est obligatoire";
+    } else {
+        //modifie du rdv
+        updateRdv($idRdv, $name, $day, $nbPerson, $hour);
+    }
 }
 
 
@@ -65,17 +74,17 @@ function afficherTableauHeures()
 </head>
 
 <body>
-
     <form action="#" method="post">
         <header>
             <h1>INSCRIPTION ESCAPE GAME</h1>
+            <a target="_blank" href="https://edu.ge.ch/site/cfpt-informatique/"><img class="logo" src="../img/logo.png" alt="logo"></a>
             <p>
                 Nom de réservation :
                 <input type="text" name="name" value="<?= $result['nomReservation']; ?>" required>
             </p>
             <p>
                 Nombre de personnes :
-                <input type="number" name="nbPerson" value="<?= $result['nbPersonne']; ?>" required>
+                <input type="number" name="nbPerson" id="nbPerson" min="1" max="3" value="<?= $result['nbPersonne']; ?>" required>
             </p>
             <p>Jour :
                 <select required name="day" id="day" onchange="changeDay()">
@@ -87,7 +96,7 @@ function afficherTableauHeures()
                     <option value="dimanche">dimanche</option>
                 </select>
             </p>
-
+            <?php echo "<p class='erreur'>" . $errorMessage . "</p>"; ?>
         </header>
         <main>
             <?php afficherTableauHeures(); ?>
@@ -149,6 +158,17 @@ function afficherTableauHeures()
                         }
                     }
                 }
+            }
+        }
+        const NUMBER_MAX = 3;
+        const inputNumber = document.getElementById("nbPerson");
+        let number = document.getElementById("nbPerson");
+
+        inputNumber.addEventListener('change', verifNumber);
+
+        function verifNumber(e) {
+            if (number.value > NUMBER_MAX) {
+                document.getElementById("nbPerson").value = 3;
             }
         }
         changeDay();

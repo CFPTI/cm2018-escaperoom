@@ -14,14 +14,14 @@ function connexionBase()
     }
     return $dbb;
 }
-//recupère les nom des groupes de la table "inscits"
+//recupère les nom des groupes de la table "inscrits"
 function getInscrits()
 {
     $query = connexionBase()->prepare("SELECT nomReservation , jour,heure FROM inscrits INNER JOIN rdv ON inscrits.idRdv = rdv.idRdv ");
     $query->execute();
     $query->fetchAll(PDO::FETCH_ASSOC);
 }
-//recuppère le jour et l'heure de la table "rdv"
+//recupère le jour et l'heure de la table "rdv"
 function getTime($jour)
 {
     $query = connexionBase()->prepare("SELECT heure FROM rdv WHERE jour = :jour");
@@ -34,7 +34,7 @@ function getTime($jour)
     // }
     // return $result2;
 }
-
+//ajouter un rdv
 function addRdv($day, $hour, $nomReservation, $nbPersonne)
 {
     $conn = connexionBase();
@@ -45,6 +45,7 @@ function addRdv($day, $hour, $nomReservation, $nbPersonne)
     $lastest_id = $conn->lastInsertId();
     addInscrit($nomReservation, $nbPersonne, $lastest_id);
 }
+//ajoute une personne
 function addInscrit($nomReservation, $nbPersonne, $lastest_id)
 {
     $conn = connexionBase();
@@ -52,10 +53,15 @@ function addInscrit($nomReservation, $nbPersonne, $lastest_id)
     $query->bindParam(':nomReservation', $nomReservation, PDO::PARAM_STR);
     $query->bindParam(':nbPersonne', $nbPersonne, PDO::PARAM_INT);
     $query->bindParam(':idRdv', $lastest_id, PDO::PARAM_INT);
-    $query->execute();
+    try {
+        $query->execute();
+    } catch (PDOException $Exception) {
+        echo "Error: " . $Exception->getMessage();
+
+        die;
+    }
 }
-
-
+//supprime un rdv
 function deleteRdv()
 {
     $conn = connexionBase();
@@ -72,6 +78,7 @@ function deleteRdv()
         echo "Error: " . $Exception->getMessage();
     }
 }
+//modifier un rdv
 function updateRdv($idRdv, $name, $day, $nbPersonne, $hour)
 {
     $conn = connexionBase();
@@ -91,5 +98,31 @@ function updateRdv($idRdv, $name, $day, $nbPersonne, $hour)
         die;
     } catch (PDOException $Exception) {
         die("Une erreure est survenue lors de la modification " . $Exception->getMessage());
+    }
+}
+//récuperer le total de personnes
+function getTotalOfPersons()
+{
+    $conn = connexionBase();
+    try {
+        $sql = "SELECT SUM(nbPersonne) FROM `inscrits`";
+        $nbPersonneTotal = $conn->prepare($sql);
+        $nbPersonneTotal->execute();
+        return $nbPersonneTotal->fetch()[0];
+    } catch (PDOException $Exception) {
+        die("Une erreure est survenue" . $Exception->getMessage());
+    }
+}
+//récuperer le total de rdv
+function getTotalOfRdv()
+{
+    $conn = connexionBase();
+    try {
+        $sql = "SELECT count(*) FROM `rdv`";
+        $nbRdvTotal = $conn->prepare($sql);
+        $nbRdvTotal->execute();
+        return $nbRdvTotal->fetch()[0];
+    } catch (PDOException $Exception) {
+        die("Une erreure est survenue" . $Exception->getMessage());
     }
 }
