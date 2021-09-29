@@ -41,7 +41,7 @@ namespace WFLostNFurious
         public const int TAILLE_BLOC_X = 70;
         public const int TAILLE_BLOC_Y = 70;
 
-        public const string CODE_DE_BASE = "A";
+        public const string CODE_DE_BASE = "4";
         #endregion
 
         #region Propriete

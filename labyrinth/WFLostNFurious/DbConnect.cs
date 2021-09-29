@@ -134,14 +134,15 @@ namespace WFLostNFurious
                 MySqlCommand cmd = new MySqlCommand(query, connection);
                 //Create a data reader and Execute the command
                 MySqlDataReader dataReader = cmd.ExecuteReader();
-            string en2 = "";
+                string en2 = "";
+             //   int test = 12;
+              //  test = test / 0;
                 
 
                 //Read the data and store them in the list
                 while (dataReader.Read())
                 {
-                   en2 = dataReader["en2"] + "";
-                   
+                     en2 = dataReader["en2"] + "";
                 }
 
                 //close Data Reader
@@ -151,8 +152,15 @@ namespace WFLostNFurious
                 this.CloseConnection();
 
                 //return list to be displayed
-                
-                return en2;
+
+                if(en2 == String.Empty)
+                {
+                    return Jeu.CODE_DE_BASE;
+                }
+                else
+                {
+                    return en2;
+                }
                 
             }
             else
