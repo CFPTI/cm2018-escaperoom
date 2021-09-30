@@ -7,7 +7,7 @@ function connexionBase()
     try {
         if ($connexionBase === null) {
             $connexionString = "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME;
-            $dbb = new PDO($connexionString, DB_USER, DB_PASS);
+            $dbb = new PDO($connexionString);
         }
     } catch (PDOException $error) {
         die("Erreur: " . $error->getMessage());

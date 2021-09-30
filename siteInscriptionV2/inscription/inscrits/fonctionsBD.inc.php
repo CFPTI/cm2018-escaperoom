@@ -14,7 +14,7 @@ function connexionBase()
     }
     return $dbb;
 }
-//recupère les nom des groupes de la table "inscits"
+
 function getInscrits()
 {
     $query = connexionBase()->prepare("SELECT idInscrit ,nbPersonne,heureDebut,heureFin,jour FROM inscrits");
@@ -22,8 +22,6 @@ function getInscrits()
     return $query->fetchAll(PDO::FETCH_ASSOC);
     
 }
-//recuppère le jour et l'heure de la table "rdv"
-
 
 function addInscrit($nbPersonne, $heureDebut, $heureFin,$jour)
 {
