@@ -62,13 +62,13 @@ table{
 
 button{
     display: inherit;
-    width: 90%;
+    width: 30%;
     margin: auto;
     height: 40px;
     background: rgb(255, 255, 255);
-    border: none;
-    border-radius: 50px;
-    box-shadow: 2px 2px 2px rgb(133, 133, 133);
+    border: 1px solid black;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px rgb(133 133 133);
     font-family: 'Russo One', sans-serif;
     font-size: large;
 }
@@ -117,7 +117,7 @@ button:hover{
     color: #000000;
     font-size: 60px;
     font-family: 'Russo One', sans-serif;
-    
+    text-align: center;
     letter-spacing: 4px;
 }
 .lancement{
@@ -130,4 +130,20 @@ button:hover{
     font-family: 'Russo One', sans-serif;
     font-size: 100%;
     background-color: rgb(180, 180, 180);
+}
+.nbPerson{
+    width: 3%;
+    background-color: rgb(233, 233, 233);
+    height: 40px;
+    border-radius: 10px;
+    border: 2px solid black;
+    font-size: 30px;
+}
+.day{
+    width: 10%;
+    height: 40px;
+    border-radius: 10px;
+    border: 2px solid black;
+    font-size: 30px;
+    background-color: rgb(236, 236, 236);
 }
