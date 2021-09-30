@@ -153,6 +153,7 @@ function afficherTableauHeures()
         }
         //verification du champs nombre
         const NUMBER_MAX = 3;
+        const NUMBER_MIN = 1;
         const inputNumber = document.getElementById("nbPerson");
         let number = document.getElementById("nbPerson");
 
@@ -161,6 +162,9 @@ function afficherTableauHeures()
         function verifNumber() {
             if (number.value > NUMBER_MAX) {
                 document.getElementById("nbPerson").value = NUMBER_MAX;
+            }
+            else if (number.value < NUMBER_MIN) {
+                document.getElementById("nbPerson").value = NUMBER_MIN;
             }
         }
         changeDay();

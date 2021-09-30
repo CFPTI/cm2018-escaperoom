@@ -33,3 +33,18 @@ function addInscrit($nbPersonne, $heureDebut, $heureFin,$jour)
     $query->bindParam(':jour', $jour, PDO::PARAM_STR);
     $query->execute();
 }
+function deleteRdv()
+{
+    $conn = connexionBase();
+    $idInscrit = filter_input(INPUT_GET, 'idInscrit', FILTER_VALIDATE_INT);
+    //supprimer un rendez-vous
+    try {
+        $query = $conn->prepare("DELETE FROM inscrits WHERE idInscrit = $idInscrit");
+        if ($query->execute()) {
+            header("location:../index.php");
+            die;
+        }
+    } catch (PDOException $Exception) {
+        echo "Error: " . $Exception->getMessage();
+    }
+}
