@@ -37,7 +37,11 @@ $results = "";
 
             <p>
                 Nombre de personnes :
-                <input type="number" name="nbPerson" id="nbPerson" min="1" max="3" class="nbPerson" required value="<?= $_SESSION['nbPersonne']?>">
+                <input type="number" name="nbPerson" id="nbPerson" min="1" max="3" class="nbPerson" required value="<?php if (isset($_SESSION['nbPersonne'])) {
+                                                                                                                        echo $_SESSION['nbPersonne'];
+                                                                                                                    } else {
+                                                                                                                        echo "3";
+                                                                                                                    } ?>">
                 <br>
                 <?php
                 // var_dump($_SESSION['nbPerson']);
@@ -124,10 +128,10 @@ $results = "";
         function verifNumber() {
             if (number.value > NUMBER_MAX) {
                 document.getElementById("nbPerson").value = NUMBER_MAX;
-            }
-            else if (number.value < NUMBER_MIN) {
+            } else if (number.value < NUMBER_MIN) {
                 document.getElementById("nbPerson").value = NUMBER_MIN;
             }
+
         }
     </script>
 </body>
