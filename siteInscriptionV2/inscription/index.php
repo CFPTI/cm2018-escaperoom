@@ -1,8 +1,10 @@
 <?php
 session_start();
 date_default_timezone_set('Europe/Paris');
+$hidden = false;
 require_once "inscrits/fonctionsBD.inc.php";
 if (filter_has_var(INPUT_POST, "heureDebut")) {
+    $hidden = false;
     $nbPerson = filter_input(INPUT_POST, 'nbPerson', FILTER_VALIDATE_INT);
     $jour = filter_input(INPUT_POST, 'jour', FILTER_SANITIZE_STRING);
     $heureDebut = date('H:i');
@@ -11,8 +13,10 @@ if (filter_has_var(INPUT_POST, "heureDebut")) {
     $_SESSION["jour"] =  $jour;
 }
 if (filter_has_var(INPUT_POST, "heureFin")) {
+    $hidden = true;
     $heureFin = date('H:i');
     addInscrit($_SESSION["nbPersonne"], $_SESSION["heureDebut"], $heureFin, $_SESSION["jour"]);
+    header("Location : index.php");
 }
 $getInscrits = getInscrits();
 $results = "";
@@ -58,7 +62,11 @@ $results = "";
 
         </button>
         <br>
-        <button name="heureFin" value="submit_" id="submit">Fin</button>
+        <button name="heureFin" value="submit_" <?php
+                                                if ($hidden == true) {
+                                                    echo "style='display:none'";
+                                                }
+                                                ?> id="submit">Fin</button>
         <table>
             <tr>
                 <td>Id</td>
