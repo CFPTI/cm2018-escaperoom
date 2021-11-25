@@ -56,10 +56,10 @@ function afficherTableauHeures()
 </head>
 
 <body>
-
     <form action="index.php" method="post">
         <header>
             <h1>INSCRIPTION ESCAPE GAME</h1>
+            <img class="logo" src="img/logo.png" alt="logo" >
             <p>
                 Nom de réservation :
                 <input type="text" name="name" required>
@@ -78,7 +78,7 @@ function afficherTableauHeures()
                     <option value="dimanche">dimanche</option>
                 </select>
             </p>
-
+            
         </header>
         <main>
             <?php afficherTableauHeures(); ?>
