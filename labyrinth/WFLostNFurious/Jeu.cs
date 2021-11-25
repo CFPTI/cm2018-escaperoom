@@ -30,9 +30,9 @@ namespace WFLostNFurious
         public const int NOMBRE_SORTIES = 3;
         public const int DUREE_UNE_SECONDE_EN_MS = 1000;
         public const int POSITION_CODE_VICTOIRE_X = 0;
-        public const int POSITION_CODE_VICTOIRE_Y = 0;
+        public const int POSITION_CODE_VICTOIRE_Y = 200;
         public const int POSITION_TEXT_VICTOIRE_X = 0;
-        public const int POSITION_TEXT_VICTOIRE_Y = 200;
+        public const int POSITION_TEXT_VICTOIRE_Y = 100;
 
 
         public const int CODE_MIN = 10;

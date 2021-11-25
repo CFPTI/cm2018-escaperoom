@@ -151,7 +151,7 @@ namespace WFLostNFurious
                 this.CloseConnection();
 
                 //return list to be displayed
-                MessageBox.Show(en2);
+                
                 return en2;
                 
             }

@@ -222,7 +222,7 @@ namespace WFLostNFurious
                 Font = new Font("Arial", 150),
                 TextAlign = ContentAlignment.MiddleCenter,
                 BackColor = Color.Transparent,
-                ForeColor = Color.Purple
+                ForeColor = Color.Lime
             };
 
             Label lblTextCode = new Label()
