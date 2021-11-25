@@ -211,14 +211,25 @@ namespace WFLostNFurious
 
 
 
-
-
-
+            
             Label lblCode = new Label()
             {
-                
+
                 Location = new Point(Jeu.POSITION_CODE_VICTOIRE_X, Jeu.POSITION_CODE_VICTOIRE_Y),
-                Text = $"Ce code vous aidera \n\r pour une énigme : {Jeu.RecevoirInfos()}",
+                Text = $" {ConnectionDB.Select()}",
+                AutoSize = false,
+                Size = new Size(this.Width, 200),
+                Font = new Font("Arial", 150),
+                TextAlign = ContentAlignment.MiddleCenter,
+                BackColor = Color.Transparent,
+                ForeColor = Color.Purple
+            };
+
+            Label lblTextCode = new Label()
+            {
+
+                Location = new Point(Jeu.POSITION_TEXT_VICTOIRE_X, Jeu.POSITION_TEXT_VICTOIRE_Y),
+                Text = $"Ce code vous aidera \n\r pour une énigme",
                 AutoSize = false,
                 Size = new Size(this.Width, this.Height),
                 Font = new Font("Arial", 75),
@@ -226,7 +237,8 @@ namespace WFLostNFurious
                 BackColor = Color.Transparent
             };
             this.Controls.Add(lblCode);
-
+            this.Controls.Add(lblTextCode);
+            //ConnectionDB.Select();
 
         }
 

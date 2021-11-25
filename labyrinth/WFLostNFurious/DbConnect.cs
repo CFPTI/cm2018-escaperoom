@@ -65,7 +65,7 @@ namespace WFLostNFurious
             database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
 
             connection = new MySqlConnection(connectionString);
-            MessageBox.Show("Bienvenue");
+           // MessageBox.Show("Bienvenue");
 
         }
 
@@ -74,7 +74,8 @@ namespace WFLostNFurious
         {
             try
             {
-                MessageBox.Show("testOpenConnection"); 
+                // MessageBox.Show("testOpenConnection"); 
+                connection.Close();
                 connection.Open();
                 return true;
             }
@@ -117,11 +118,11 @@ namespace WFLostNFurious
           }
 
         //Select statement
-        public List<string>[] Select()
+        public string Select()
         {
-       
 
-            string query = "SELECT en2 FROM solution where jour = " + Jeu.RecupDate();
+
+            string query = "SELECT en2 FROM solution where jour = ' " + Jeu.RecupDate() + "' " ;
 
             //Create a list to store the result
 
@@ -133,14 +134,14 @@ namespace WFLostNFurious
                 MySqlCommand cmd = new MySqlCommand(query, connection);
                 //Create a data reader and Execute the command
                 MySqlDataReader dataReader = cmd.ExecuteReader();
+            string en2 = "";
+                
 
                 //Read the data and store them in the list
                 while (dataReader.Read())
                 {
-                   /* list[0].Add(dataReader["jour"] + "");
-                    list[1].Add(dataReader["en1"] + "");
-                    list[2].Add(dataReader["en2"] + "");
-                    list[3].Add(dataReader["en3"] + "");*/
+                   en2 = dataReader["en2"] + "";
+                   
                 }
 
                 //close Data Reader
@@ -150,11 +151,14 @@ namespace WFLostNFurious
                 this.CloseConnection();
 
                 //return list to be displayed
-                //return list;
+                MessageBox.Show(en2);
+                return en2;
+                
             }
             else
             {
-                //return list;
+               // MessageBox.Show("testOpen2");
+                return "Non connecter a la database";
             }
         }
 
