@@ -1,12 +1,18 @@
 <?php
+//appel des fonctions de la base de donnée
 require_once "inscrits/fonctionsBD.inc.php";
+//declaration des constantes
 define("HEURE_DEBUT", 9);
 define("HEURE_FIN", 19);
 define("NUMBER_MAX", 3);
+//declaration des variables
 $errorMessage = "";
+//tableau des jours
 $jours = ["mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche"];
 
+//pour chaque jour du tableau
 foreach ($jours as $jour) {
+    //appel de la fonction qui recupere le temps de chaque jour
     $listTime[$jour] = getTime($jour);
 }
 //si validation du formulaire
